@@ -4,15 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+
+    <com.google.android.material.appbar.MaterialToolbar
+
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/overflow_menu"
+        app:title="Pokedex "
+        app:titleTextColor="@color/white" >
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="145dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="48dp"
+            android:background="#FAF5F5"
+            android:ems="10"
+            android:hint="enter name"
+            android:inputType="textPersonName"
+            android:shadowRadius="@android:integer/config_mediumAnimTime"
+            app:layout_constraintBottom_toBottomOf="@+id/topAppBar"
+            app:layout_constraintEnd_toEndOf="@+id/topAppBar"
+            app:layout_constraintHorizontal_bias="0.552"
+            app:layout_constraintStart_toStartOf="@+id/topAppBar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+    </com.google.android.material.appbar.MaterialToolbar>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topAppBar"
+        app:layout_constraintVertical_bias="0.5">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
