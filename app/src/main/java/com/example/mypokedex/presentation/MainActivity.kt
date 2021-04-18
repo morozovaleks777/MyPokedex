@@ -31,7 +31,8 @@ setSupportActionBar(findViewById(R.id.topAppBar))
 
         viewModel.loadData()
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+       // recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = GridLayoutManager(this,3)
         recyclerView.adapter = adapter
     }
 
@@ -40,14 +41,17 @@ setSupportActionBar(findViewById(R.id.topAppBar))
         return super.onCreateOptionsMenu(menu)
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId){
+//    override fun onOptionsItemSelected(item: MenuItem):Boolean {
+//       return when (item.itemId){
 //            R.id.action_search ->{
 //                TODO()}
 //            R.id.show_all_menu ->{
-//                TODO()}
-//            R.id.show_by_generation ->{
+//
 //                TODO()
+//          }
+//            R.id.show_by_generation ->{
+//               TODO()
+//
 //            }
 //
 //            else -> super.onOptionsItemSelected(item)}
