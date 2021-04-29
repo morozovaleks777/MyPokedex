@@ -3,4 +3,6 @@
     <string name="show_all">show all</string>
     <string name="search">Search</string>
     <string name="show_by">show by</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
