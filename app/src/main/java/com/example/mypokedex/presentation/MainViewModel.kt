@@ -1,9 +1,13 @@
 package com.example.mypokedex.presentation
 
 import android.util.Log
+import android.widget.ListView
+import android.widget.SimpleAdapter
+import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mypokedex.R
 
 import com.example.mypokedex.data.MockPokemonRepository
 import com.example.mypokedex.data.NetworkPokemonRepository
@@ -40,6 +44,7 @@ class MainViewModel: ViewModel() {
                 }
             )
     }
+
 
      private fun showData(pokemons: List<PokemonEntity>) {
         val generation0 = pokemons.filter { it.generation == 0 }

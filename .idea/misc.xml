@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/drawable-v24/ic_arrow.xml" value="0.1" />
+        <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/drawable/card_pokemon_parameter.xml" value="0.1296875" />
+        <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/font/roboto_mono.xml" value="0.1" />
+        <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/font/roboto_mono_medium.xml" value="0.1" />
         <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/layout/fragment_detail.xml" value="0.13360507246376813" />
+        <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/layout/fragment_detail.xml" value="0.14152644230769232" />
         <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/layout/fragment_list.xml" value="0.13360507246376813" />
         <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/layout/header_item.xml" value="0.13360507246376813" />
+        <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/layout/list_fragment.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/layout/main_item.xml" value="0.13360507246376813" />
+        <entry key="..\:/Users/Oleksandr_Morozov/StudioProjects/MyPokedex/app/src/main/res/menu/overflow_menu.xml" value="0.2296875" />
       </map>
     </option>
   </component>

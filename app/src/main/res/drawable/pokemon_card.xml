@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid
+        android:width="2dp"
+        android:color="@color/dragon"
+        />
+
+    <corners
+        android:bottomLeftRadius="@dimen/pokemon_details_card_radius"
+        android:bottomRightRadius="@dimen/pokemon_details_card_radius"
+        />
+
+</shape>

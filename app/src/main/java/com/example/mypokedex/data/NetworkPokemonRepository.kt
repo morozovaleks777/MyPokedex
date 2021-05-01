@@ -28,9 +28,11 @@ class NetworkPokemonRepository(
                     id = serverPokemon.id,
                     name = serverPokemon.name,
                     previewUrl = generateUrlFromId(serverPokemon.id),
-                    abilities = abilities)
+                    abilities = abilities
+                )
             }
     }
 
-    fun generateUrlFromId(id: String): String = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
+    fun generateUrlFromId(id: String): String =
+        "https://pokeres.bastionbot.org/images/pokemon/$id.png"
 }

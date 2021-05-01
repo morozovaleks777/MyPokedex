@@ -1,5 +1,7 @@
 package com.example.mypokedex.presentation.adapter
 
+import com.example.mypokedex.domain.PokemonEntity
+
 interface DisplayableItem
 
 data class PokemonItem(
@@ -12,3 +14,6 @@ data class PokemonItem(
 data class HeaderItem(
     val text: String
 ): DisplayableItem
+
+fun PokemonEntity.toItem(): PokemonItem =
+    PokemonItem(id, name, previewUrl)
