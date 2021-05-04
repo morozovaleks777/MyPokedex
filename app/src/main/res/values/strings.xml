@@ -14,6 +14,9 @@
     <string name="spd">SPD</string>
     <string name="exp">EXP</string>
 
+    <integer name="card_flip_duration_full">1000</integer>
+    <integer name="card_flip_duration_half">500</integer>
+
     <!-- Errors -->
     <string name="something_went_wrong">Something went wrong</string>
     <string name="error">Error sign</string>
