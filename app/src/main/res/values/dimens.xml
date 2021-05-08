@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Paddings -->
+    <dimen name="padding_small">7dp</dimen>
+    <dimen name="padding_medium">20dp</dimen>
+
+    <!--Margins-->
+    <dimen name="margin_small">7dp</dimen>
+    <dimen name="margin_medium">20dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+
+    <!--Fonts-->
+    <dimen name="small_font">15sp</dimen>
+    <dimen name="medium_font">23sp</dimen>
+    <dimen name="large_font">30sp</dimen>
+
+    <!-- Other sizes -->
+    <dimen name="image_poke_size">120dp</dimen>
+    <dimen name="list_item_pokemon_card_radius">15dp</dimen>
+    <dimen name="list_item_pokemon_parameter_card_radius">5dp</dimen>
+    <dimen name="pokemon_details_card_radius">40dp</dimen>
+    <dimen name="card_poke_size">180dp</dimen>
+    <dimen name="image_large">180dp</dimen>
+    <dimen name="progress_bar_height">20dp</dimen>
+</resources>

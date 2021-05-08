@@ -33,7 +33,7 @@ interface PokedexApiService {
      */
     @GET("pokemon")
     fun fetchPokemonList(
-        @Query("limit") limit: Int = 40,
+        @Query("limit") limit: Int = 25,
         @Query("offset") offset: Int = 0
     ): Single<PokemonListResponse>
 

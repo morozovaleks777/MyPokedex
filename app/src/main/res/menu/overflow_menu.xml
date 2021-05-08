@@ -10,10 +10,12 @@
         android:id="@+id/show_all_menu"
         android:title="@string/show_all" />
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/searchView"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="@string/search"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+/>
     <item
         android:id="@+id/show_by_generation"
         android:title="@string/show_by" />

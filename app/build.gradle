@@ -76,5 +76,8 @@ dependencies {
     //ProgressView
     implementation "com.github.skydoves:progressview:1.1.0"
     implementation "com.github.skydoves:baserecyclerviewadapter:1.0.4"
+    // Koin for Android
+    implementation "org.koin:koin-android:2.1.5"
+    implementation "org.koin:koin-android-viewmodel:2.1.5"
 }
 

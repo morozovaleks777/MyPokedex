@@ -5,28 +5,38 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedDispatcherOwner
 import androidx.cardview.widget.CardView
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
 
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import org.koin.ext.getScopeName
 import java.lang.Exception
+import java.util.*
+import kotlin.reflect.typeOf
 
 private const val ITEM_TYPE_UNKNOWN = 0
 private const val ITEM_TYPE_POKEMON = 1
 private const val ITEM_TYPE_HEADER = 2
 class MainAdapter(
     private val onItemClicked: (id: String) -> Unit
-): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var items: MutableList<DisplayableItem> = emptyList<DisplayableItem>().toMutableList()
+): RecyclerView.Adapter<RecyclerView.ViewHolder>(),Filterable {
 
+    private var items: MutableList<DisplayableItem> = emptyList<DisplayableItem>().toMutableList()
+lateinit var itemsFilterList: MutableList<DisplayableItem>
     fun setPokemonList(pokemons: List<DisplayableItem>) {
         items.clear()
         items.addAll(pokemons)
+        this.itemsFilterList=items
         notifyDataSetChanged()
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -35,6 +45,8 @@ class MainAdapter(
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.main_item, parent, false)
                 PokemonViewHolder(view, onItemClicked)
+
+
             }
 
             ITEM_TYPE_HEADER -> {
@@ -51,7 +63,7 @@ class MainAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         when (val itemToShow = items[position]) {
-            is PokemonItem -> {
+            is PokemonItem  -> {
                 (holder as PokemonViewHolder).bind(itemToShow)
             }
             is HeaderItem -> {
@@ -107,4 +119,47 @@ class MainAdapter(
             bannerName.text = item.text
         }
     }
+
+
+
+    override fun getFilter(): Filter {
+       return object :Filter(){
+           override fun performFiltering(charSequence: CharSequence?): FilterResults {
+              val charSearch=charSequence.toString()
+               //val filterResults = FilterResults()
+               if (charSearch.isNullOrBlank() ) {
+                  // filterResults.count = itemsFilterList.size
+                   //filterResults = itemsFilterList
+                   itemsFilterList=items
+               } else {
+                   val searchChr = charSequence.toString().toLowerCase(Locale.ROOT)
+                   val itemModal = emptyList<DisplayableItem>().toMutableList()
+                 //  for (item in itemsFilterList) {
+                   for(item in items){
+                       if (  (item as PokemonItem).name.contains(searchChr)) {
+                           itemModal.add(item)
+                       }
+
+
+                 //  filterResults.count = itemModal.size
+                  // filterResults.values = itemModal
+                       itemsFilterList=itemModal
+               }
+           }
+               val filterResults = FilterResults()
+               filterResults.values = itemsFilterList
+               return filterResults
+              // return filterResults
+           }
+           @Suppress("UNCHECKED_CAST")
+           override fun publishResults(constraint: CharSequence?, filterResults: FilterResults?) {
+
+               itemsFilterList = filterResults?.values as MutableList<DisplayableItem>
+               notifyDataSetChanged()
+           }
+
+
+       }
+    }
+
 }
