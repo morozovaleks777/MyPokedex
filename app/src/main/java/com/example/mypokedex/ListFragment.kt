@@ -44,21 +44,19 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
 
         viewModel.viewState().observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is PokemonListViewState.LoadingState -> {
+            when(state) {
+                is PokemonListViewState.Loading -> {
                     showProgress()
                 }
-                is PokemonListViewState.ErrorState -> {
-                    showError(state.errorMessage)
+                is PokemonListViewState.Error -> {
+                    showError(state.message)
                 }
-                is PokemonListViewState.ContentState -> {
-
+                is PokemonListViewState.Data -> {
                     showData(state.items)
-
                 }
             }
-
         }
+
 
         viewModel.loadData()
         (view.parent as? View)?.doOnPreDraw { startPostponedEnterTransition() }

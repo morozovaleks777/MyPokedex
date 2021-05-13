@@ -1,5 +1,6 @@
 package com.example.mypokedex.presentation.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
+import com.skydoves.progressview.textForm
 
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -33,11 +35,14 @@ class MainAdapter(
 lateinit var itemsFilterList: MutableList<DisplayableItem>
     fun setPokemonList(pokemons: List<DisplayableItem>) {
         items.clear()
-        items.addAll(pokemons)
-        this.itemsFilterList=items
+       items.addAll(pokemons)
+
+      //this.itemsFilterList=items
+
         notifyDataSetChanged()
 
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -80,7 +85,7 @@ lateinit var itemsFilterList: MutableList<DisplayableItem>
         }
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int =items.size
 
     class PokemonViewHolder(view: View, val onItemClicked: (id: String) -> Unit) :
         RecyclerView.ViewHolder(view) {
@@ -126,35 +131,34 @@ lateinit var itemsFilterList: MutableList<DisplayableItem>
        return object :Filter(){
            override fun performFiltering(charSequence: CharSequence?): FilterResults {
               val charSearch=charSequence.toString()
-               //val filterResults = FilterResults()
-               if (charSearch.isNullOrBlank() ) {
-                  // filterResults.count = itemsFilterList.size
+               if (charSearch.isEmpty() ) {
+
+                   //filterResults.count = itemsFilterList.size
                    //filterResults = itemsFilterList
+                   //itemsFilterList=items
+
                    itemsFilterList=items
                } else {
                    val searchChr = charSequence.toString().toLowerCase(Locale.ROOT)
                    val itemModal = emptyList<DisplayableItem>().toMutableList()
-                 //  for (item in itemsFilterList) {
+
                    for(item in items){
                        if (  (item as PokemonItem).name.contains(searchChr)) {
                            itemModal.add(item)
                        }
 
-
-                 //  filterResults.count = itemModal.size
-                  // filterResults.values = itemModal
                        itemsFilterList=itemModal
                }
            }
-               val filterResults = FilterResults()
+              val filterResults = FilterResults()
                filterResults.values = itemsFilterList
                return filterResults
-              // return filterResults
            }
+
            @Suppress("UNCHECKED_CAST")
            override fun publishResults(constraint: CharSequence?, filterResults: FilterResults?) {
 
-               itemsFilterList = filterResults?.values as MutableList<DisplayableItem>
+               items = filterResults?.values as MutableList<DisplayableItem>
                notifyDataSetChanged()
            }
 

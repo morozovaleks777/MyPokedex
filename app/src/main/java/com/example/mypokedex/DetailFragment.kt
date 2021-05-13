@@ -53,7 +53,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-postponeEnterTransition(1000, java.util.concurrent.TimeUnit.MILLISECONDS)
+postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
         backToList()
 
         val id = arguments?.getString(PARAM_POKEMON_ID)

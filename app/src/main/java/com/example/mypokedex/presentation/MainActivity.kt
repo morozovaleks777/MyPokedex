@@ -22,7 +22,7 @@ var mainAdapter:MainAdapter? =null
                 .setReorderingAllowed(true)
                 .setCustomAnimations(R.animator.slide_in_left, R.animator.slide_in_right,
                    R.animator.slide_in_left, R.animator.slide_in_right)
-                .replace(android.R.id.content, ListFragment())
+                .replace(android.R.id.content,ListFragment())
 
                 .commit()
 
@@ -47,9 +47,11 @@ var mainAdapter:MainAdapter? =null
     override fun openPokemonList(){
         supportFragmentManager.beginTransaction()
             .setReorderingAllowed(true)
-            .setCustomAnimations(R.animator.card_flip_right_enter,
+            .setCustomAnimations(
+                R.animator.card_flip_right_enter,
                 R.animator.card_flip_right_exit,
-                R.animator.card_flip_left_enter, R.animator.card_flip_left_exit
+                R.animator.card_flip_left_enter,
+                R.animator.card_flip_left_exit
             )
             .replace(R.id.cardView, ListFragment())
 
@@ -65,7 +67,7 @@ var mainAdapter:MainAdapter? =null
             searchView.maxWidth= Int.MAX_VALUE
             searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                 //   mainAdapter?.filter?.filter(query)
+                    mainAdapter?.filter?.filter(query)
                    // return true
                     return false
                 }

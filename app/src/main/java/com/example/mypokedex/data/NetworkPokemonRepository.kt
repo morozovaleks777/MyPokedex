@@ -1,37 +1,42 @@
 package com.example.mypokedex.data
 
 import com.example.mypokedex.data.network.PokedexApiService
+import com.example.mypokedex.data.network.PokemonDetailedResponse
 import com.example.mypokedex.domain.PokemonEntity
 import com.example.mypokedex.domain.PokemonRepository
-import io.reactivex.Observable
-import io.reactivex.Single
+import com.example.mypokedex.domain.Result
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class NetworkPokemonRepository(
     val api: PokedexApiService
 ): PokemonRepository {
-    override fun getPokemonList(): Single<List<PokemonEntity>> {
-        return api.fetchPokemonList()
-            .flatMap { pokemonList ->
-                Observable.fromIterable(pokemonList.results)
-                    .flatMapSingle {
-                        getPokemonById(it.name)
-                    }.toList()
+    override suspend fun getPokemonList(): Result<List<PokemonEntity>> = withContext(Dispatchers.IO) {
+        try {
+            val ids = api.fetchPokemonList().results.map { it.name }
+            val pokemonListWithDetails = ids.map { id ->
+                api.fetchPokemonDetail(id).toEntity()
             }
+            Result.Success(pokemonListWithDetails)
+        } catch (th: Exception) {
+            Result.Error(th)
+        }
     }
 
-    override fun getPokemonById(id: String): Single<PokemonEntity> {
-        return api.fetchPokemonInfo(id)
-            .map { serverPokemon ->
-                val abilities = serverPokemon.abilities.map { it.ability.name }
-
-                PokemonEntity(
-                    id = serverPokemon.id,
-                    name = serverPokemon.name,
-                    previewUrl = generateUrlFromId(serverPokemon.id),
-                    abilities = abilities
-                )
-            }
+    override suspend fun getPokemonById(id: String): Result<PokemonEntity> = withContext(Dispatchers.IO) {
+        try {
+            val entity = api.fetchPokemonDetail(id).toEntity()
+            Result.Success(entity)
+        } catch (exception: Exception) {
+            Result.Error(exception)
+        }
     }
+    private fun PokemonDetailedResponse.toEntity() =
+        PokemonEntity(
+            id = id,
+            name = name,
+            previewUrl = generateUrlFromId(id),
+            abilities = abilities.map { it.ability.name })
 
     fun generateUrlFromId(id: String): String =
         "https://pokeres.bastionbot.org/images/pokemon/$id.png"

@@ -21,7 +21,7 @@ fun createPokedexApiService(): PokedexApiService {
     val retrofit = Retrofit.Builder()
         .baseUrl("https://pokeapi.co/api/v2/")
         .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+       // .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
 
     return retrofit.create(PokedexApiService::class.java)
@@ -32,16 +32,16 @@ interface PokedexApiService {
      * See for details: https://pokeapi.co/api/v2/pokemon
      */
     @GET("pokemon")
-    fun fetchPokemonList(
+   suspend fun fetchPokemonList(
         @Query("limit") limit: Int = 25,
         @Query("offset") offset: Int = 0
-    ): Single<PokemonListResponse>
+    ): PokemonListResponse
 
     /**
      * See for details: https://pokeapi.co/api/v2/pokemon/bulbasaur
      */
     @GET("pokemon/{name}")
-    fun fetchPokemonInfo(@Path("name") name: String): Single<PokemonDetailedResponse>
+   suspend fun fetchPokemonDetail(@Path("name") name: String): PokemonDetailedResponse
     @GET("realestate")
     suspend fun getProperties(@Query("filter") type: String): List<PokemonEntity>
 
