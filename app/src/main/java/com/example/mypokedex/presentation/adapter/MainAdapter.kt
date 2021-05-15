@@ -1,6 +1,6 @@
 package com.example.mypokedex.presentation.adapter
 
-import android.annotation.SuppressLint
+
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,23 +10,18 @@ import android.widget.Filter
 import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.OnBackPressedDispatcherOwner
-import androidx.cardview.widget.CardView
-import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.R
-import com.skydoves.progressview.textForm
-
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import org.koin.ext.getScopeName
 import java.lang.Exception
 import java.util.*
-import kotlin.reflect.typeOf
+
 
 private const val ITEM_TYPE_UNKNOWN = 0
 private const val ITEM_TYPE_POKEMON = 1
 private const val ITEM_TYPE_HEADER = 2
+
 class MainAdapter(
     private val onItemClicked: (id: String) -> Unit
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>(),Filterable {

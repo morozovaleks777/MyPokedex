@@ -5,14 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mypokedex.di.Injector
+import com.example.mypokedex.domain.PokemonRepository
+
 import kotlinx.coroutines.launch
 import com.example.mypokedex.domain.Result
 import com.example.mypokedex.presentation.adapter.toItem
 
-class ListViewModel : ViewModel() {
+class ListViewModel(private val repository: PokemonRepository) : ViewModel() {
 
-        private val repository = Injector.providePokemonRepository()
+
 
 
 

@@ -1,29 +1,22 @@
 package com.example.mypokedex
 
-import android.graphics.drawable.ColorDrawable
-import android.icu.util.TimeUnit
+
 import android.os.Bundle
-import android.transition.TransitionInflater
+
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
-import androidx.core.view.ViewCompat
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.mypokedex.presentation.Navigation
 import com.example.mypokedex.presentation.Navigation2
 import com.example.mypokedex.presentation.adapter.MainAdapter
 import com.squareup.picasso.Picasso
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,7 +28,7 @@ import com.squareup.picasso.Picasso
  * create an instance of this fragment.
  */
 class DetailFragment : Fragment(R.layout.fragment_detail) {
-    private val viewModel = DetailViewModel()
+    private val viewModel : DetailViewModel by viewModel()
     private var adapter: MainAdapter? = null
     private val navigation: Navigation2? by lazy { (activity as? Navigation2) }
 
@@ -103,10 +96,6 @@ postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
             navigation?.openPokemonList()
 
         }
-
-
-
-
 
     }
 
