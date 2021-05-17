@@ -25,4 +25,11 @@
     <string name="data_updated">Data successfully updated</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="hp_text">HEALTH POINTS (%1$d / %2$d)</string>
+    <string name="attack_text">ATTACK (%1$d / %2$d)</string>
+    <string name="defence_text">DEFENCE (%1$d / %2$d)</string>
+    <string name="speed_text">SPEED (%1$d / %2$d)</string>
+    <string name="experience_text">EXPERIENCE (%1$d / %2$d)</string>
 </resources>

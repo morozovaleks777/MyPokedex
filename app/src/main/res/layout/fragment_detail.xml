@@ -66,12 +66,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginBottom="124dp"
+                android:layout_marginTop="12dp"
                 android:textSize="21sp"
-                app:layout_constraintBottom_toTopOf="@+id/stats_title"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.251"
+                app:layout_constraintHorizontal_bias="0.231"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/abilities"
                 tools:text="24.0 KG" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -82,6 +82,7 @@
 
                 android:textSize="21sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.463"
                 app:layout_constraintStart_toEndOf="@id/weight"
                 app:layout_constraintTop_toTopOf="@id/weight"
                 tools:text="11 M" />
@@ -154,7 +155,7 @@
                 app:layout_constraintTop_toBottomOf="@id/hp" />
 
             <com.skydoves.progressview.ProgressView
-                android:id="@+id/progressView"
+                android:id="@+id/progress_attak"
                 android:layout_width="0dp"
                 android:layout_height="18dp"
                 android:layout_marginEnd="32dp"
@@ -183,6 +184,7 @@
                 app:layout_constraintTop_toBottomOf="@id/attack" />
 
             <com.skydoves.progressview.ProgressView
+                android:id="@+id/progress_defense"
                 android:layout_width="0dp"
                 android:layout_height="18dp"
                 android:layout_marginEnd="32dp"
@@ -211,6 +213,7 @@
                 app:layout_constraintTop_toBottomOf="@id/defense" />
 
             <com.skydoves.progressview.ProgressView
+                android:id="@+id/progress_speed"
                 android:layout_width="0dp"
                 android:layout_height="18dp"
                 android:layout_marginEnd="32dp"
@@ -239,6 +242,7 @@
                 app:layout_constraintTop_toBottomOf="@id/speed" />
 
             <com.skydoves.progressview.ProgressView
+                android:id="@+id/progress_exp"
                 android:layout_width="0dp"
                 android:layout_height="18dp"
                 android:layout_marginEnd="32dp"
@@ -257,25 +261,23 @@
             <TextView
                 android:id="@+id/abilities"
                 android:layout_width="467dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="803dp"
-                android:layout_marginBottom="47dp"
-                android:background="#4D3F51B5"
-                android:padding="16dp"
-                android:textColor="#BBDEFB"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="328dp"
+                android:background="@color/background"
+                android:padding="24dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.463"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
                 tools:text="Pokemon Abilities" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/content_group"
                 android:layout_width="42dp"
                 android:layout_height="17dp"
-                app:constraint_referenced_ids="image,name,abilities" />
+                app:constraint_referenced_ids="image,abilities,name" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/stats_title"
@@ -285,6 +287,7 @@
                 android:layout_marginTop="229dp"
                 android:layout_marginBottom="232dp"
                 android:text="@string/base_stats"
+                android:textAlignment="center"
                 android:textColor="@color/white_93"
                 android:textSize="21sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -311,13 +314,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/header"
                 app:layout_constraintVertical_bias="0.0"
-                tools:text="sky doves" />
+                tools:text="Pokedex" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/header"
                 android:layout_width="0dp"
                 android:layout_height="260dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/background"
                 android:elevation="9dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -330,11 +333,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
+                android:onClick="click"
                 android:paddingStart="12dp"
                 android:paddingTop="12dp"
                 android:paddingEnd="6dp"
                 android:translationZ="100dp"
-android:onClick="click"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.046"
                 app:layout_constraintStart_toStartOf="parent"
@@ -349,6 +352,7 @@ android:onClick="click"
 
 
                 android:layout_marginEnd="110dp"
+                android:contentDescription="Pokemon"
                 android:scaleType="center"
                 android:translationZ="100dp"
                 app:layout_constraintEnd_toEndOf="@+id/header"

@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mypokedex.domain.PokemonDetails
 
 import com.example.mypokedex.domain.PokemonEntity
 import com.example.mypokedex.domain.PokemonRepository
@@ -15,6 +16,8 @@ import com.example.mypokedex.domain.Result
 class DetailViewModel( private val repository: PokemonRepository): ViewModel() {
 
     private val viewStateLiveData = MutableLiveData<DetailViewState>()
+    private val _pokemonDetailsLiveData = MutableLiveData<PokemonDetails>()
+    val pokemonDetailsLiveData: LiveData<PokemonDetails> = _pokemonDetailsLiveData
 
     fun viewState(): LiveData<DetailViewState> = viewStateLiveData
 
@@ -24,7 +27,10 @@ class DetailViewModel( private val repository: PokemonRepository): ViewModel() {
         fun PokemonEntity.toDataViewState() = DetailViewState.Data(
             name = name,
             imageUrl = previewUrl,
-            abilities = abilities
+            abilities = abilities,
+            height = height,
+            weight = weight,
+           stats = stats
         )
 
         viewModelScope.launch {
@@ -41,6 +47,8 @@ class DetailViewModel( private val repository: PokemonRepository): ViewModel() {
             }
         }
     }
+
+
 
     private fun createErrorViewState(message: String) = DetailViewState.Error(message)
 }

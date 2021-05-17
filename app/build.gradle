@@ -37,7 +37,8 @@ android {
 }
 
 dependencies {
-
+// moshi
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
     // Koin for Android
     def koin_version= "3.0.1"
     // Koin main features for Android (Scope,ViewModel ...)

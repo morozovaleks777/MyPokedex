@@ -2,9 +2,11 @@ package com.example.mypokedex.data
 
 import com.example.mypokedex.data.network.PokedexApiService
 import com.example.mypokedex.data.network.PokemonDetailedResponse
+
 import com.example.mypokedex.domain.PokemonEntity
 import com.example.mypokedex.domain.PokemonRepository
 import com.example.mypokedex.domain.Result
+import io.reactivex.Single
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -24,20 +26,36 @@ class NetworkPokemonRepository(
     }
 
     override suspend fun getPokemonById(id: String): Result<PokemonEntity> = withContext(Dispatchers.IO) {
+
         try {
+
             val entity = api.fetchPokemonDetail(id).toEntity()
+
             Result.Success(entity)
         } catch (exception: Exception) {
             Result.Error(exception)
         }
     }
+
     private fun PokemonDetailedResponse.toEntity() =
+
         PokemonEntity(
+
             id = id,
             name = name,
             previewUrl = generateUrlFromId(id),
-            abilities = abilities.map { it.ability.name })
+            abilities = abilities.map { it.ability.name },
+            height = height,
+            weight = weight,
+           stats = stats.map { it.stat.name to it.base_stat }.toMap()
+
+
+    )
+
+
+
 
     fun generateUrlFromId(id: String): String =
         "https://pokeres.bastionbot.org/images/pokemon/$id.png"
+       // "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
 }
