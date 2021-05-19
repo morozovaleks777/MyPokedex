@@ -9,7 +9,8 @@ sealed class DetailViewState {
         val abilities: List<String>,
         val height: Int,
         val weight: Int,
-        val stats: Map<String,String>
+        val stats: Map<String,String>,
+        val types:List<String>
     ): DetailViewState()
 
     data class Error(val message: String): DetailViewState()

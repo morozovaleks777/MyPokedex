@@ -1,6 +1,8 @@
 package com.example.mypokedex
 
 
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 
 import android.util.Log
@@ -9,6 +11,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
@@ -17,8 +20,10 @@ import com.example.mypokedex.presentation.Navigation2
 import com.example.mypokedex.presentation.adapter.MainAdapter
 import com.skydoves.progressview.ProgressView
 import com.squareup.picasso.Picasso
+import org.intellij.lang.annotations.Language
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -31,7 +36,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * create an instance of this fragment.
  */
 class DetailFragment : Fragment(R.layout.fragment_detail) {
-private val pokemon:PokemonDetails by inject ()
+
     private val viewModel : DetailViewModel by viewModel()
     private var adapter: MainAdapter? = null
     private val navigation: Navigation2? by lazy { (activity as? Navigation2) }
@@ -109,8 +114,9 @@ postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
 
     }
 
-    private fun showDataState(view: View, state: DetailViewState.Data) {
 
+    private fun showDataState(view: View, state: DetailViewState.Data) {
+val head=view.findViewById<ImageView>(R.id.header)
         val nameTextView = view.findViewById<TextView>(R.id.name)
         val imagePreview = view.findViewById<ImageView>(R.id.image)
         val abilitiesTextView = view.findViewById<TextView>(R.id.abilities)
@@ -123,8 +129,33 @@ postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
         val deffP=view.findViewById<ProgressView>(R.id.progress_defense)
         val speedP=view.findViewById<ProgressView>(R.id.progress_speed)
 
+        fun getTypeColor(types: List<String>): Int {
+            return when {
+               types.contains("fighting") -> R.color.fighting
+                types.contains("flying") -> R.color.flying
+                types.contains("poison") -> R.color.poison
+                types.contains("ground") -> R.color.ground
+                types.contains("rock") -> R.color.rock
+                types.contains("bug") -> R.color.bug
+               types.contains("ghost") -> R.color.ghost
+               types.contains("steel") -> R.color.steel
+               types.contains("fire") -> R.color.fire
+                types.contains("water") -> R.color.water
+                 types.contains("grass") -> R.color.grass
+                 types.contains("electric") -> R.color.electric
+                types.contains("psychic") -> R.color.psychic
+                types.contains("ice") -> R.color.ice
+                types.contains("dragon") -> R.color.dragon
+                 types.contains("fairy") -> R.color.fairy
+                types.contains("dark") -> R.color.dark
+                else -> R.color.white
+            }
+        }
 
-        nameTextView.text = state.name
+head.setBackgroundColor(getTypeColor(state.types))
+   // nameTextView.text = state.name
+
+     nameTextView.text =viewModel.lat2cyr( state.name.toUpperCase())+state.types
       height.text= state.height.toString()
       weight.text= state.weight.toString()
 abilitiesTextView.text=state.abilities.toString()
@@ -136,22 +167,17 @@ abilitiesTextView.text=state.abilities.toString()
            hpP.progress = hpNew.toFloat()
         }
 
-//        val expNew=state.stats["EXP"]
-//        expP.labelText ="Experience : $expNew/${PokemonDetails.maxExp}"
-//        expP.max = PokemonDetails.maxExp.toFloat()
-//        if (expNew != null) {
-//            expP.progress = expNew.toFloat()
-//        }
+
         val exp: Int = (PokemonDetails.minExp..PokemonDetails.maxExp).random()
         fun getExpString(): String = "Experience : $exp/${PokemonDetails.maxExp}"
-       expP.labelText = getExpString()
-        expP.max = PokemonDetails.maxExp.toFloat()
-        expP.progress = exp.toFloat()
+         expP.labelText = getExpString()
+         expP.max = PokemonDetails.maxExp.toFloat()
+         expP.progress = exp.toFloat()
 
         val attak=state.stats["attack"]
-        attakP.labelText ="Attack : $attak/${PokemonDetails.maxAttack}"
-        attakP.max = PokemonDetails.maxAttack.toFloat()
-        if (attak != null) {
+         attakP.labelText ="Attack : $attak/${PokemonDetails.maxAttack}"
+         attakP.max = PokemonDetails.maxAttack.toFloat()
+          if (attak != null) {
             attakP.progress = attak.toFloat()
         }
 

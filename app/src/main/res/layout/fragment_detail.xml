@@ -320,7 +320,7 @@
                 android:id="@+id/header"
                 android:layout_width="0dp"
                 android:layout_height="260dp"
-                android:background="@color/background"
+
                 android:elevation="9dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/overflow_menu"
         app:title="Pokedex "
-        app:titleTextColor="@color/white" >
+        app:titleTextColor="@color/white">
 
 
     </com.google.android.material.appbar.MaterialToolbar>
@@ -38,7 +38,6 @@
         app:layout_constraintVertical_bias="0.5">
 
     </androidx.recyclerview.widget.RecyclerView>
-
 
 
 

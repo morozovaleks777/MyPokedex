@@ -15,6 +15,7 @@
         android:layout_marginTop="5sp"
         android:layout_marginRight="5sp"
         android:layout_marginBottom="5sp"
+
         app:cardBackgroundColor="#FAF5F5">
 
         <ImageView

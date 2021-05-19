@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="show_all">показати все</string>
+    <string name="search">пошук</string>
+    <string name="base_stats">характеристики</string>
+    <string name="weight">Вага</string>
+    <string name="height">Ріст</string>
+    <string name="hp">здоров\'я</string>
+    <string name="atk">атака</string>
+    <string name="def">захист</string>
+    <string name="spd">швидкість</string>
+    <string name="something_went_wrong">щось пішло не так ..</string>
+    <string name="error">помилка</string>
+    <string name="data_updated">данні оновлено</string>
+    <string name="hp_text">здрв_текст</string>
+    <string name="attack_text">атк_текст</string>
+    <string name="defence_text">зхст_текст</string>
+    <string name="speed_text">швдк_текст</string>
+    <string name="experience_text">досвід_текст</string>
+    <string name="exp">дсвд</string>
+    <string name="hello_blank_fragment">хелло_фрагмент</string>
+    <string name="got_it">отримано</string>
+    <string name="show_by">показати за</string>
+    <string name="My_Pokedex">показати за</string>
+    <string name="change_lang">змінити мову</string>
+</resources>

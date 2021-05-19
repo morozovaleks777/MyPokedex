@@ -1,21 +1,29 @@
 package com.example.mypokedex.presentation.adapter
 
 
+import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
+
 import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mypokedex.DetailViewState
 import com.example.mypokedex.R
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 
 private const val ITEM_TYPE_UNKNOWN = 0
@@ -24,15 +32,22 @@ private const val ITEM_TYPE_HEADER = 2
 
 class MainAdapter(
     private val onItemClicked: (id: String) -> Unit
-): RecyclerView.Adapter<RecyclerView.ViewHolder>(),Filterable {
+): RecyclerView.Adapter<RecyclerView.ViewHolder>(),Filterable{
 
     private var items: MutableList<DisplayableItem> = emptyList<DisplayableItem>().toMutableList()
-lateinit var itemsFilterList: MutableList<DisplayableItem>
+//lateinit var itemsFilterList: MutableList<DisplayableItem>
+var itemsFilterList = ArrayList<DisplayableItem>()
+
+    init {
+        itemsFilterList = items as ArrayList<DisplayableItem>
+    }
+
+
     fun setPokemonList(pokemons: List<DisplayableItem>) {
         items.clear()
        items.addAll(pokemons)
 
-      //this.itemsFilterList=items
+items=itemsFilterList
 
         notifyDataSetChanged()
 
@@ -60,9 +75,15 @@ lateinit var itemsFilterList: MutableList<DisplayableItem>
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+       holder.itemView.findViewById<CardView>(R.id.cardView).setCardBackgroundColor(setRandomCardColor(holder.itemView.context))
 
-        when (val itemToShow = items[position]) {
+
+        //holder.itemView.setBackgroundColor(setRandomCardColor(holder.itemView.context))
+
+
+        when (val itemToShow = itemsFilterList[position]) {
             is PokemonItem  -> {
                 (holder as PokemonViewHolder).bind(itemToShow)
             }
@@ -71,6 +92,12 @@ lateinit var itemsFilterList: MutableList<DisplayableItem>
             }
         }
     }
+    private fun setRandomCardColor(context: Context): Int {
+        val coloredList: IntArray = context.resources.getIntArray(R.array.colors)
+        return coloredList[Random.nextInt(1, coloredList.size)]
+    }
+
+
 
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
@@ -86,6 +113,7 @@ lateinit var itemsFilterList: MutableList<DisplayableItem>
         RecyclerView.ViewHolder(view) {
         private val textView = itemView.findViewById<TextView>(R.id.name)
         private val imagePreview = itemView.findViewById<ImageView>(R.id.imagePreview)
+
 
         fun bind(item: PokemonItem) {
             textView.text = item.name
@@ -126,13 +154,9 @@ lateinit var itemsFilterList: MutableList<DisplayableItem>
        return object :Filter(){
            override fun performFiltering(charSequence: CharSequence?): FilterResults {
               val charSearch=charSequence.toString()
-               if (charSearch.isEmpty() ) {
+               if (charSearch.isBlank() ) {
 
-                   //filterResults.count = itemsFilterList.size
-                   //filterResults = itemsFilterList
-                   //itemsFilterList=items
-
-                   itemsFilterList=items
+                   itemsFilterList= items as ArrayList<DisplayableItem>
                } else {
                    val searchChr = charSequence.toString().toLowerCase(Locale.ROOT)
                    val itemModal = emptyList<DisplayableItem>().toMutableList()
@@ -142,7 +166,7 @@ lateinit var itemsFilterList: MutableList<DisplayableItem>
                            itemModal.add(item)
                        }
 
-                       itemsFilterList=itemModal
+                       itemsFilterList= itemModal as ArrayList<DisplayableItem>
                }
            }
               val filterResults = FilterResults()
@@ -153,7 +177,8 @@ lateinit var itemsFilterList: MutableList<DisplayableItem>
            @Suppress("UNCHECKED_CAST")
            override fun publishResults(constraint: CharSequence?, filterResults: FilterResults?) {
 
-               items = filterResults?.values as MutableList<DisplayableItem>
+              items = filterResults?.values as ArrayList<DisplayableItem>
+
                notifyDataSetChanged()
            }
 

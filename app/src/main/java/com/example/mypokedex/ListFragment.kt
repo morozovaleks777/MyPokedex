@@ -1,9 +1,11 @@
 package com.example.mypokedex
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -11,16 +13,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.presentation.Navigation
 import com.example.mypokedex.presentation.adapter.DisplayableItem
 import com.example.mypokedex.presentation.adapter.MainAdapter
+import com.example.mypokedex.presentation.adapter.PokemonItem
+import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 
 class ListFragment : Fragment(R.layout.fragment_list) {
 
 
+    lateinit var types: DetailViewState.Data
     private val viewModel: ListViewModel by viewModel()
     private var adapter: MainAdapter? = null
     private val navigation: Navigation? by lazy { (activity as? Navigation) }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,7 +37,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
 
         viewModel.viewState().observe(viewLifecycleOwner) { state ->
-            when(state) {
+            when (state) {
                 is PokemonListViewState.Loading -> {
                     showProgress()
                 }
@@ -53,6 +58,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     }
 
 
+
     private fun initRecyclerView() {
         adapter = MainAdapter(
 
@@ -61,8 +67,8 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             }
         )
 
-        val recyclerView= view?.findViewById<RecyclerView>(R.id.recyclerView)!!
-        recyclerView.layoutManager = GridLayoutManager(context,3)
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerView)!!
+        recyclerView.layoutManager = GridLayoutManager(context, 3)
         recyclerView.adapter = adapter
 
     }
@@ -73,7 +79,13 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private fun showData(items: List<DisplayableItem>) {
         adapter?.setPokemonList(items)
+
     }
+
+    }
+
+
+
 
     private fun showError(errorMessage: String) {
 
@@ -83,27 +95,6 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
 
 
-//    override fun onOptionsItemSelected(item: MenuItem):Boolean {
-//        return when (item.itemId){
-//            R.id.action_search ->{
-//                val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerView)
-//                recyclerView?.layoutManager = GridLayoutManager(context,3)
-//                recyclerView?.adapter = adapter
-//    var  id= R.id.editText
-//                recyclerView?.scrollToPosition(id)
-//            true}
-//            R.id.show_all_menu ->{
-//                TODO()
-//
-//            }
-//            R.id.show_by_generation ->{
-//                TODO()
-//
-//            }
-//
-//            else -> super.onOptionsItemSelected(item)}
-//    }
 
-}
 
 

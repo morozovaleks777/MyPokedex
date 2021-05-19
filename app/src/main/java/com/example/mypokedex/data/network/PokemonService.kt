@@ -29,7 +29,7 @@ interface PokedexApiService {
      */
     @GET("pokemon")
    suspend fun fetchPokemonList(
-        @Query("limit") limit: Int = 25,
+        @Query("limit") limit: Int = 50,
         @Query("offset") offset: Int = 0
     ): PokemonListResponse
 
@@ -59,7 +59,8 @@ data class PokemonDetailedResponse(
     val abilities: List<PokemonAbilityData>,
     val height:Int,
     val weight:Int,
-     val stats:List<PokemonStatsData>
+     val stats:List<PokemonStatsData>,
+      val types: List<PokemonTypesData>,
 
 )
 // Stats
@@ -81,5 +82,13 @@ data class PokemonAbilityDetailsData(
     val name: String
 )
 
+data class PokemonTypesData(
+    val slot: Int,
+    val type: PokemonTypesDetailsData,
+)
 
+data class PokemonTypesDetailsData(
+    val name: String,
+    val url: String,
+)
 

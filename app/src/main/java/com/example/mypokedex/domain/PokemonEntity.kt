@@ -10,8 +10,8 @@ data class PokemonEntity(
     val abilities: List<String> = emptyList(),
     val height:Int,
     val weight:Int,
-    val stats: Map<String,String> = emptyMap()
-
+    val stats: Map<String,String> = emptyMap(),
+      val types:List<String>,
 
 )
 

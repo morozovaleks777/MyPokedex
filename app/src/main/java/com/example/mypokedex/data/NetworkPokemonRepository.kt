@@ -47,9 +47,8 @@ class NetworkPokemonRepository(
             abilities = abilities.map { it.ability.name },
             height = height,
             weight = weight,
-           stats = stats.map { it.stat.name to it.base_stat }.toMap()
-
-
+           stats = stats.map { it.stat.name to it.base_stat }.toMap(),
+            types= types.map { it.type.name }
     )
 
 
