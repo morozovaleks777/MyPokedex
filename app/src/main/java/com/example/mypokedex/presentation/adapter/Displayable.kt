@@ -4,17 +4,17 @@ import com.example.mypokedex.domain.PokemonEntity
 
 interface DisplayableItem
 
-data class PokemonItem (
+data class PokemonItem(
     val id: String,
     val name: String,
     val image: String,
-    val useRedColor: Boolean=false ,
+    val useRedColor: Boolean = false,
 
-): DisplayableItem
+    ) : DisplayableItem
 
 data class HeaderItem(
     val text: String
-): DisplayableItem
+) : DisplayableItem
 
 fun PokemonEntity.toItem(): PokemonItem =
-    PokemonItem(id, name, previewUrl )
+    PokemonItem(id, name, previewUrl)

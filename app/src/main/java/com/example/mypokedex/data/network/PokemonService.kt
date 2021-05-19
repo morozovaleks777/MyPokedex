@@ -7,17 +7,17 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-enum class PokemonApiFilter(val value: String) { SHOW_SINGLE("single pokemon"),
-    SHOW_BY_GEN("generation"), SHOW_ALL("all") }
-
-
+enum class PokemonApiFilter(val value: String) {
+    SHOW_SINGLE("single pokemon"),
+    SHOW_BY_GEN("generation"), SHOW_ALL("all")
+}
 
 
 fun createPokedexApiService(): PokedexApiService {
     val retrofit = Retrofit.Builder()
         .baseUrl("https://pokeapi.co/api/v2/")
         .addConverterFactory(GsonConverterFactory.create())
-       // .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        // .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
 
     return retrofit.create(PokedexApiService::class.java)
@@ -28,7 +28,7 @@ interface PokedexApiService {
      * See for details: https://pokeapi.co/api/v2/pokemon
      */
     @GET("pokemon")
-   suspend fun fetchPokemonList(
+    suspend fun fetchPokemonList(
         @Query("limit") limit: Int = 50,
         @Query("offset") offset: Int = 0
     ): PokemonListResponse
@@ -37,7 +37,8 @@ interface PokedexApiService {
      * See for details: https://pokeapi.co/api/v2/pokemon/bulbasaur
      */
     @GET("pokemon/{name}")
-   suspend fun fetchPokemonDetail(@Path("name") name: String): PokemonDetailedResponse
+    suspend fun fetchPokemonDetail(@Path("name") name: String): PokemonDetailedResponse
+
     @GET("realestate")
     suspend fun getProperties(@Query("filter") type: String): List<PokemonEntity>
 
@@ -57,12 +58,13 @@ data class PokemonDetailedResponse(
     val id: String,
     val name: String,
     val abilities: List<PokemonAbilityData>,
-    val height:Int,
-    val weight:Int,
-     val stats:List<PokemonStatsData>,
-      val types: List<PokemonTypesData>,
+    val height: Int,
+    val weight: Int,
+    val stats: List<PokemonStatsData>,
+    val types: List<PokemonTypesData>,
 
-)
+    )
+
 // Stats
 data class PokemonStatsData(
     val stat: PokemonStatsDetailData,

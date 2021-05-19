@@ -1,11 +1,11 @@
 package com.example.mypokedex
 
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import android.widget.*
-import androidx.cardview.widget.CardView
+
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,16 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.presentation.Navigation
 import com.example.mypokedex.presentation.adapter.DisplayableItem
 import com.example.mypokedex.presentation.adapter.MainAdapter
-import com.example.mypokedex.presentation.adapter.PokemonItem
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 
 class ListFragment : Fragment(R.layout.fragment_list) {
 
 
-    lateinit var types: DetailViewState.Data
+    
+
+
     private val viewModel: ListViewModel by viewModel()
     private var adapter: MainAdapter? = null
     private val navigation: Navigation? by lazy { (activity as? Navigation) }
@@ -34,7 +33,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
         initRecyclerView()
 
-
+setHasOptionsMenu(true)
 
         viewModel.viewState().observe(viewLifecycleOwner) { state ->
             when (state) {
@@ -56,6 +55,46 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+        inflater.inflate(R.menu.overflow_menu,menu)
+
+            val menuItem= menu.findItem(R.id.searchView)
+            val searchView=menuItem.actionView as SearchView
+            searchView.maxWidth= Int.MAX_VALUE
+            searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    viewModel.filter.filter(query)
+
+                   // return true
+                    return false
+                }
+
+                override fun onQueryTextChange(filterString: String?): Boolean {
+                    viewModel.filter.filter(filterString)
+                   // return true
+                    return false
+                }
+
+            })
+       super.onCreateOptionsMenu(menu, inflater)
+
+
+        }
+
+
+
+        override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+            when (item.itemId) {
+                R.id.searchView ->{
+                   viewModel.filter}
+
+            }
+
+            return false
+        }
 
 
 
@@ -82,14 +121,12 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     }
 
-    }
+}
 
 
+private fun showError(errorMessage: String) {
 
-
-    private fun showError(errorMessage: String) {
-
-    }
+}
 
 
 

@@ -4,7 +4,7 @@ import com.example.mypokedex.domain.PokemonEntity
 import com.example.mypokedex.domain.PokemonRepository
 import com.example.mypokedex.domain.Result
 
-class MockPokemonRepository: PokemonRepository {
+class MockPokemonRepository : PokemonRepository {
     val items = mutableListOf<PokemonEntity>(
 //        PokemonEntity("1", "bulbasaur", generateUrlFromId(1)),
 //        PokemonEntity("2", "ivysaur", generateUrlFromId(2)),
@@ -17,6 +17,7 @@ class MockPokemonRepository: PokemonRepository {
 //        PokemonEntity("9", "imposter", generateUrlFromId(150)),
 //        PokemonEntity("10", "ditto", generateUrlFromId(132))
     )
+
     override suspend fun getPokemonList(): Result<List<PokemonEntity>> = Result.Success(items)
 
     override suspend fun getPokemonById(id: String): Result<PokemonEntity> {
@@ -30,5 +31,6 @@ class MockPokemonRepository: PokemonRepository {
     }
 
 
-    fun generateUrlFromId(id: Int): String = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
+    fun generateUrlFromId(id: Int): String =
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
 }

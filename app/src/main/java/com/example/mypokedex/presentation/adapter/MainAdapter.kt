@@ -32,24 +32,25 @@ private const val ITEM_TYPE_HEADER = 2
 
 class MainAdapter(
     private val onItemClicked: (id: String) -> Unit
-): RecyclerView.Adapter<RecyclerView.ViewHolder>(),Filterable{
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var items: MutableList<DisplayableItem> = emptyList<DisplayableItem>().toMutableList()
-//lateinit var itemsFilterList: MutableList<DisplayableItem>
-var itemsFilterList = ArrayList<DisplayableItem>()
-
-    init {
-        itemsFilterList = items as ArrayList<DisplayableItem>
-    }
+   private var items: MutableList<DisplayableItem> = emptyList<DisplayableItem>().toMutableList()
+//
+//    //lateinit var itemsFilterList: MutableList<DisplayableItem>
+//    var itemsFilterList = ArrayList<DisplayableItem>()
+//
+//    init {
+//        itemsFilterList = items as ArrayList<DisplayableItem>
+//    }
 
 
     fun setPokemonList(pokemons: List<DisplayableItem>) {
         items.clear()
-       items.addAll(pokemons)
+        items.addAll(pokemons)
 
-items=itemsFilterList
 
-        notifyDataSetChanged()
+
+       // notifyDataSetChanged()
 
     }
 
@@ -77,14 +78,15 @@ items=itemsFilterList
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-       holder.itemView.findViewById<CardView>(R.id.cardView).setCardBackgroundColor(setRandomCardColor(holder.itemView.context))
+        holder.itemView.findViewById<CardView>(R.id.cardView)
+            .setCardBackgroundColor(setRandomCardColor(holder.itemView.context))
 
 
         //holder.itemView.setBackgroundColor(setRandomCardColor(holder.itemView.context))
 
 
-        when (val itemToShow = itemsFilterList[position]) {
-            is PokemonItem  -> {
+        when (val itemToShow = items[position]) {
+            is PokemonItem -> {
                 (holder as PokemonViewHolder).bind(itemToShow)
             }
             is HeaderItem -> {
@@ -92,11 +94,11 @@ items=itemsFilterList
             }
         }
     }
+
     private fun setRandomCardColor(context: Context): Int {
         val coloredList: IntArray = context.resources.getIntArray(R.array.colors)
         return coloredList[Random.nextInt(1, coloredList.size)]
     }
-
 
 
     override fun getItemViewType(position: Int): Int {
@@ -107,7 +109,7 @@ items=itemsFilterList
         }
     }
 
-    override fun getItemCount(): Int =items.size
+    override fun getItemCount(): Int = items.size
 
     class PokemonViewHolder(view: View, val onItemClicked: (id: String) -> Unit) :
         RecyclerView.ViewHolder(view) {
@@ -149,41 +151,40 @@ items=itemsFilterList
     }
 
 
-
-    override fun getFilter(): Filter {
-       return object :Filter(){
-           override fun performFiltering(charSequence: CharSequence?): FilterResults {
-              val charSearch=charSequence.toString()
-               if (charSearch.isBlank() ) {
-
-                   itemsFilterList= items as ArrayList<DisplayableItem>
-               } else {
-                   val searchChr = charSequence.toString().toLowerCase(Locale.ROOT)
-                   val itemModal = emptyList<DisplayableItem>().toMutableList()
-
-                   for(item in items){
-                       if (  (item as PokemonItem).name.contains(searchChr)) {
-                           itemModal.add(item)
-                       }
-
-                       itemsFilterList= itemModal as ArrayList<DisplayableItem>
-               }
-           }
-              val filterResults = FilterResults()
-               filterResults.values = itemsFilterList
-               return filterResults
-           }
-
-           @Suppress("UNCHECKED_CAST")
-           override fun publishResults(constraint: CharSequence?, filterResults: FilterResults?) {
-
-              items = filterResults?.values as ArrayList<DisplayableItem>
-
-               notifyDataSetChanged()
-           }
-
-
-       }
-    }
+//    override fun getFilter(): Filter {
+//        return object : Filter() {
+//            override fun performFiltering(charSequence: CharSequence?): FilterResults {
+//                val charSearch = charSequence.toString()
+//                if (charSearch.isBlank()) {
+//
+//                    itemsFilterList = items as ArrayList<DisplayableItem>
+//                } else {
+//                    val searchChr = charSequence.toString().toLowerCase(Locale.ROOT)
+//                    val itemModal = emptyList<DisplayableItem>().toMutableList()
+//
+//                    for (item in items) {
+//                        if ((item as PokemonItem).name.contains(searchChr)) {
+//                            itemModal.add(item)
+//                        }
+//
+//                        itemsFilterList = itemModal as ArrayList<DisplayableItem>
+//                    }
+//                }
+//                val filterResults = FilterResults()
+//                filterResults.values = itemsFilterList
+//                return filterResults
+//            }
+//
+//            @Suppress("UNCHECKED_CAST")
+//            override fun publishResults(constraint: CharSequence?, filterResults: FilterResults?) {
+//
+//                items = filterResults?.values as ArrayList<DisplayableItem>
+//
+//                notifyDataSetChanged()
+//            }
+//
+//
+//        }
+//    }
 
 }

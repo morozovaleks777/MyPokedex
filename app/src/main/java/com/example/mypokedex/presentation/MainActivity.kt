@@ -14,43 +14,43 @@ import com.example.mypokedex.R
 import com.example.mypokedex.presentation.adapter.MainAdapter
 
 
-class MainActivity : AppCompatActivity(), Navigation,Navigation2 {
-var mainAdapter:MainAdapter? =null
+class MainActivity : AppCompatActivity(), Navigation, Navigation2 {
+    var mainAdapter: MainAdapter? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            supportFragmentManager.beginTransaction()
-               // .setReorderingAllowed(false)
-                //.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_in_right,
-                //  R.animator.slide_in_left, R.animator.slide_in_right)
-                .replace(android.R.id.content,ListFragment())
-                .commit()
+        super.onCreate(savedInstanceState)
+        supportFragmentManager.beginTransaction()
+            // .setReorderingAllowed(false)
+            //.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_in_right,
+            //  R.animator.slide_in_left, R.animator.slide_in_right)
+            .replace(android.R.id.content, ListFragment())
+            .commit()
 
     }
+
     override fun openPokemonDetails(id: String) {
-            supportFragmentManager.beginTransaction()
-                .setReorderingAllowed(true)
-                .setCustomAnimations(
+        supportFragmentManager.beginTransaction()
+            .setReorderingAllowed(true)
+            .setCustomAnimations(
 //                   R.animator.slide_in_left, R.animator.slide_in_right,
 //                   R.animator.card_flip_right_enter, R.animator.card_flip_right_exit)
-                    R.animator.card_flip_right_enter,
-                    R.animator.card_flip_right_exit,
-                    R.animator.card_flip_left_enter,
-                    R.animator.card_flip_left_exit
-                )
+                R.animator.card_flip_right_enter,
+                R.animator.card_flip_right_exit,
+                R.animator.card_flip_left_enter,
+                R.animator.card_flip_left_exit
+            )
 
-                .replace(android.R.id.content, DetailFragment.newInstance(id))
+            .replace(android.R.id.content, DetailFragment.newInstance(id))
 
-                .addToBackStack(null)
+            .addToBackStack(null)
 
-                .commit()
+            .commit()
 
 
+    }
 
-        }
-
-    override fun openPokemonList(){
+    override fun openPokemonList() {
         supportFragmentManager.beginTransaction()
             .setReorderingAllowed(true)
             .setCustomAnimations(
@@ -117,10 +117,11 @@ var mainAdapter:MainAdapter? =null
 }
 
 
-
 interface Navigation {
-        fun openPokemonDetails(id: String)}
-interface Navigation2{
+    fun openPokemonDetails(id: String)
+}
+
+interface Navigation2 {
     fun openPokemonList()
 
 }

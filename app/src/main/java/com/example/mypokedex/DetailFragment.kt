@@ -37,7 +37,7 @@ import java.util.*
  */
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
-    private val viewModel : DetailViewModel by viewModel()
+    private val viewModel: DetailViewModel by viewModel()
     private var adapter: MainAdapter? = null
     private val navigation: Navigation2? by lazy { (activity as? Navigation2) }
 
@@ -53,26 +53,23 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
 
-    override fun onViewCreated(view: View,savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
+        postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
         backToList()
 
         val id = arguments?.getString(PARAM_POKEMON_ID)
 
         if (id != null) {
-            loadPokemonData(view, id  )
+            loadPokemonData(view, id)
 
         } else {
-            Log.d("TAG, ","Error, pokemon with id=$id not found")
+            Log.d("TAG, ", "Error, pokemon with id=$id not found")
         }
         (view.parent as? View)?.doOnPreDraw { startPostponedEnterTransition() }
 
 
-
-
     }
-
 
 
     private fun loadPokemonData(view: View, id: String) {
@@ -80,10 +77,10 @@ postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
 
         val progressView = view.findViewById<ProgressBar>(R.id.progress)
         val contentView = view.findViewById<View>(R.id.content_group)
-       val errorView = view.findViewById<TextView>(R.id.error_message_text)
+        val errorView = view.findViewById<TextView>(R.id.error_message_text)
 
         viewModel.viewState().observe(viewLifecycleOwner) { viewState ->
-            when(viewState) {
+            when (viewState) {
                 DetailViewState.Loading -> {
                     progressView.isVisible = true
                     contentView.isVisible = false
@@ -94,7 +91,7 @@ postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
                     contentView.isVisible = true
                     errorView.isVisible = false
 
-                    showDataState(view = view, state = viewState,)
+                    showDataState(view = view, state = viewState)
 
 
                 }
@@ -106,8 +103,9 @@ postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
             }
         }
     }
+
     private fun backToList() {
-       adapter = MainAdapter {
+        adapter = MainAdapter {
             navigation?.openPokemonList()
 
         }
@@ -116,79 +114,79 @@ postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
 
 
     private fun showDataState(view: View, state: DetailViewState.Data) {
-val head=view.findViewById<ImageView>(R.id.header)
+        val head = view.findViewById<ImageView>(R.id.header)
         val nameTextView = view.findViewById<TextView>(R.id.name)
         val imagePreview = view.findViewById<ImageView>(R.id.image)
         val abilitiesTextView = view.findViewById<TextView>(R.id.abilities)
 
-        val height=view.findViewById<TextView>(R.id.height)
-        val weight=view.findViewById<TextView>(R.id.weight)
-        val hpP=view.findViewById<ProgressView>(R.id.progress_hp)
-        val expP=view.findViewById<ProgressView>(R.id.progress_exp)
-        val attakP=view.findViewById<ProgressView>(R.id.progress_attak)
-        val deffP=view.findViewById<ProgressView>(R.id.progress_defense)
-        val speedP=view.findViewById<ProgressView>(R.id.progress_speed)
+        val height = view.findViewById<TextView>(R.id.height)
+        val weight = view.findViewById<TextView>(R.id.weight)
+        val hpP = view.findViewById<ProgressView>(R.id.progress_hp)
+        val expP = view.findViewById<ProgressView>(R.id.progress_exp)
+        val attakP = view.findViewById<ProgressView>(R.id.progress_attak)
+        val deffP = view.findViewById<ProgressView>(R.id.progress_defense)
+        val speedP = view.findViewById<ProgressView>(R.id.progress_speed)
 
         fun getTypeColor(types: List<String>): Int {
             return when {
-               types.contains("fighting") -> R.color.fighting
+                types.contains("fighting") -> R.color.fighting
                 types.contains("flying") -> R.color.flying
                 types.contains("poison") -> R.color.poison
                 types.contains("ground") -> R.color.ground
                 types.contains("rock") -> R.color.rock
                 types.contains("bug") -> R.color.bug
-               types.contains("ghost") -> R.color.ghost
-               types.contains("steel") -> R.color.steel
-               types.contains("fire") -> R.color.fire
+                types.contains("ghost") -> R.color.ghost
+                types.contains("steel") -> R.color.steel
+                types.contains("fire") -> R.color.fire
                 types.contains("water") -> R.color.water
-                 types.contains("grass") -> R.color.grass
-                 types.contains("electric") -> R.color.electric
+                types.contains("grass") -> R.color.grass
+                types.contains("electric") -> R.color.electric
                 types.contains("psychic") -> R.color.psychic
                 types.contains("ice") -> R.color.ice
                 types.contains("dragon") -> R.color.dragon
-                 types.contains("fairy") -> R.color.fairy
+                types.contains("fairy") -> R.color.fairy
                 types.contains("dark") -> R.color.dark
                 else -> R.color.white
             }
         }
 
-head.setBackgroundColor(getTypeColor(state.types))
-   // nameTextView.text = state.name
+        head.setBackgroundColor(getTypeColor(state.types))
+        // nameTextView.text = state.name
 
-     nameTextView.text =viewModel.lat2cyr( state.name.toUpperCase())+state.types
-      height.text= state.height.toString()
-      weight.text= state.weight.toString()
-abilitiesTextView.text=state.abilities.toString()
+        nameTextView.text = viewModel.lat2cyr(state.name.toUpperCase()) + state.types
+        height.text = state.height.toString()
+        weight.text = state.weight.toString()
+        abilitiesTextView.text = state.abilities.toString()
 
-       val hpNew=state.stats["hp"]
-    hpP.labelText ="Health : $hpNew/${PokemonDetails.maxHp}"
-     hpP.max = PokemonDetails.maxHp.toFloat()
+        val hpNew = state.stats["hp"]
+        hpP.labelText = "Health : $hpNew/${PokemonDetails.maxHp}"
+        hpP.max = PokemonDetails.maxHp.toFloat()
         if (hpNew != null) {
-           hpP.progress = hpNew.toFloat()
+            hpP.progress = hpNew.toFloat()
         }
 
 
         val exp: Int = (PokemonDetails.minExp..PokemonDetails.maxExp).random()
         fun getExpString(): String = "Experience : $exp/${PokemonDetails.maxExp}"
-         expP.labelText = getExpString()
-         expP.max = PokemonDetails.maxExp.toFloat()
-         expP.progress = exp.toFloat()
+        expP.labelText = getExpString()
+        expP.max = PokemonDetails.maxExp.toFloat()
+        expP.progress = exp.toFloat()
 
-        val attak=state.stats["attack"]
-         attakP.labelText ="Attack : $attak/${PokemonDetails.maxAttack}"
-         attakP.max = PokemonDetails.maxAttack.toFloat()
-          if (attak != null) {
+        val attak = state.stats["attack"]
+        attakP.labelText = "Attack : $attak/${PokemonDetails.maxAttack}"
+        attakP.max = PokemonDetails.maxAttack.toFloat()
+        if (attak != null) {
             attakP.progress = attak.toFloat()
         }
 
-        val def=state.stats["defense"]
-        deffP.labelText ="Defense : $def/${PokemonDetails.maxDefense}"
+        val def = state.stats["defense"]
+        deffP.labelText = "Defense : $def/${PokemonDetails.maxDefense}"
         deffP.max = PokemonDetails.maxDefense.toFloat()
         if (def != null) {
             deffP.progress = def.toFloat()
         }
-        val speed=state.stats["speed"]
-        speedP.labelText ="Speed : $speed/${PokemonDetails.maxSpeed}"
+        val speed = state.stats["speed"]
+        speedP.labelText = "Speed : $speed/${PokemonDetails.maxSpeed}"
         speedP.max = PokemonDetails.maxSpeed.toFloat()
         if (speed != null) {
             speedP.progress = speed.toFloat()
@@ -204,17 +202,16 @@ abilitiesTextView.text=state.abilities.toString()
     }
 
 
-
-fun loadPokemonDataView(view: View,pokemon:PokemonDetails){
-    val hpP= view.findViewById<ProgressView>(R.id.progress_hp)
+    fun loadPokemonDataView(view: View, pokemon: PokemonDetails) {
+        val hpP = view.findViewById<ProgressView>(R.id.progress_hp)
 
 
         hpP.progress = pokemon.hp.toFloat()
         hpP.labelText = pokemon.getHpString()
-    hpP.max = PokemonDetails.maxHp.toFloat()
+        hpP.max = PokemonDetails.maxHp.toFloat()
 
 
-}
+    }
 
 
 }
