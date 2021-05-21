@@ -7,11 +7,20 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 
 import com.example.mypokedex.DetailFragment
 import com.example.mypokedex.ListFragment
 import com.example.mypokedex.R
 import com.example.mypokedex.presentation.adapter.MainAdapter
+import android.view.inputmethod.EditorInfo
+
+
+
+import android.view.MenuInflater
+
+
+
 
 
 class MainActivity : AppCompatActivity(), Navigation, Navigation2 {
@@ -26,7 +35,8 @@ class MainActivity : AppCompatActivity(), Navigation, Navigation2 {
             //  R.animator.slide_in_left, R.animator.slide_in_right)
             .replace(android.R.id.content, ListFragment())
             .commit()
-
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
     }
 
     override fun openPokemonDetails(id: String) {

@@ -31,12 +31,17 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
-        dataBinding true
+
         viewBinding true
     }
 }
 
 dependencies {
+    // Lottie
+    implementation "com.airbnb.android:lottie:3.6.1"
+
+    // ViewBinding-ktx
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.4.6'
 // moshi
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
     // Koin for Android

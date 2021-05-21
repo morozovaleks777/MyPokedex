@@ -49,6 +49,7 @@ class DetailViewModel(private val repository: PokemonRepository) : ViewModel() {
                     Log.d("ViewModel", "Error is", result.exception)
                     createErrorViewState("Failed to load pokemon with id=$id")
                 }
+
             }
         }
     }

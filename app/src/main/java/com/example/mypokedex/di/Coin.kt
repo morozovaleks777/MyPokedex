@@ -21,11 +21,11 @@ val appModule = module {
     viewModel { DetailViewModel(get()) }
 }
 
-//private fun createPokedexApiService(): PokedexApiService {
-//    val retrofit = Retrofit.Builder()
-//        .baseUrl("https://pokeapi.co/api/v2/")
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-//
-//    return retrofit.create(PokedexApiService::class.java)
-//}
+private fun createPokedexApiService(): PokedexApiService {
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://pokeapi.co/api/v2/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    return retrofit.create(PokedexApiService::class.java)
+}

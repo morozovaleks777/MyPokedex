@@ -5,6 +5,7 @@ import com.example.mypokedex.domain.PokemonEntity
 interface DisplayableItem
 
 data class PokemonItem(
+
     val id: String,
     val name: String,
     val image: String,

@@ -33,4 +33,12 @@
     <string name="speed_text">SPEED (%1$d / %2$d)</string>
     <string name="experience_text">EXPERIENCE (%1$d / %2$d)</string>
     <string name="change_lang">change lang</string>
+
+
+
+<string name="general_message_connectivity_error" translatable="false">Can\'t load</string>
+<string name="general_message_retry" translatable="false">Retry</string>
+<string name="general_message_connectivity_error_image_description" translatable="false">Load error image</string>
+<string name="general_message_loading_text" translatable="false">Loading</string>
+
 </resources>

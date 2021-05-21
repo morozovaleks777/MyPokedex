@@ -15,9 +15,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypokedex.DetailViewState
+import com.example.mypokedex.ListViewModel
 import com.example.mypokedex.R
+import com.example.mypokedex.databinding.HeaderItemBinding
+import com.example.mypokedex.databinding.MainItemBinding
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
@@ -32,27 +37,33 @@ private const val ITEM_TYPE_HEADER = 2
 
 class MainAdapter(
     private val onItemClicked: (id: String) -> Unit
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : ListAdapter<DisplayableItem, RecyclerView.ViewHolder>(PokemonItemDiffCallback) {
 
-   private var items: MutableList<DisplayableItem> = emptyList<DisplayableItem>().toMutableList()
+  //  private var items: MutableList<DisplayableItem> = emptyList<DisplayableItem>().toMutableList()
+
+
+
+//    fun setPokemonList(pokemons: List<DisplayableItem>) {
+//        items.clear()
+// items.addAll(pokemons )
 //
-//    //lateinit var itemsFilterList: MutableList<DisplayableItem>
-//    var itemsFilterList = ArrayList<DisplayableItem>()
 //
-//    init {
-//        itemsFilterList = items as ArrayList<DisplayableItem>
+//        notifyDataSetChanged()
+//
 //    }
 
+    private object PokemonItemDiffCallback : DiffUtil.ItemCallback<DisplayableItem>() {
+        override fun areItemsTheSame(
+            oldItem: DisplayableItem,
+            newItem: DisplayableItem
+        ): Boolean = oldItem == newItem
 
-    fun setPokemonList(pokemons: List<DisplayableItem>) {
-        items.clear()
-        items.addAll(pokemons)
-
-
-
-       // notifyDataSetChanged()
-
+        override fun areContentsTheSame(
+            oldItem: DisplayableItem,
+            newItem: DisplayableItem
+        ): Boolean = false
     }
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -81,11 +92,10 @@ class MainAdapter(
         holder.itemView.findViewById<CardView>(R.id.cardView)
             .setCardBackgroundColor(setRandomCardColor(holder.itemView.context))
 
-
         //holder.itemView.setBackgroundColor(setRandomCardColor(holder.itemView.context))
 
 
-        when (val itemToShow = items[position]) {
+        when (val itemToShow = getItem(position) ){
             is PokemonItem -> {
                 (holder as PokemonViewHolder).bind(itemToShow)
             }
@@ -102,39 +112,29 @@ class MainAdapter(
 
 
     override fun getItemViewType(position: Int): Int {
-        return when (items[position]) {
+        return when (getItem(position)) {
             is PokemonItem -> ITEM_TYPE_POKEMON
             is HeaderItem -> ITEM_TYPE_HEADER
             else -> ITEM_TYPE_UNKNOWN
         }
     }
 
-    override fun getItemCount(): Int = items.size
+    //override fun getItemCount(): Int = items.size
 
     class PokemonViewHolder(view: View, val onItemClicked: (id: String) -> Unit) :
         RecyclerView.ViewHolder(view) {
-        private val textView = itemView.findViewById<TextView>(R.id.name)
-        private val imagePreview = itemView.findViewById<ImageView>(R.id.imagePreview)
+        val binding = MainItemBinding.bind(itemView)
 
-
-        fun bind(item: PokemonItem) {
-            textView.text = item.name
+        fun bind(item: PokemonItem) = with(binding) {
+            name.text = item.name
 
             if (item.useRedColor) {
-                textView.setTextColor(Color.RED)
+                name.setTextColor(Color.RED)
             } else {
-                textView.setTextColor(Color.BLACK)
+                name.setTextColor(Color.BLACK)
             }
 
-            Picasso.get().load(item.image).into(imagePreview, object : Callback {
-                override fun onSuccess() {
-                    Log.d("", "Loaded image")
-                }
-
-                override fun onError(e: Exception?) {
-                    Log.d("", "Loaded image", e)
-                }
-            })
+            Picasso.get().load(item.image).into(imagePreview)
 
             itemView.setOnClickListener {
                 onItemClicked(item.id)
@@ -143,48 +143,12 @@ class MainAdapter(
     }
 
     class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val bannerName = itemView.findViewById<TextView>(R.id.headerText)
+        private val binding = HeaderItemBinding.bind(itemView)
 
-        fun bind(item: HeaderItem) {
-            bannerName.text = item.text
+        fun bind(item: HeaderItem) = with(binding) {
+            headerText.text = item.text
         }
     }
 
-
-//    override fun getFilter(): Filter {
-//        return object : Filter() {
-//            override fun performFiltering(charSequence: CharSequence?): FilterResults {
-//                val charSearch = charSequence.toString()
-//                if (charSearch.isBlank()) {
-//
-//                    itemsFilterList = items as ArrayList<DisplayableItem>
-//                } else {
-//                    val searchChr = charSequence.toString().toLowerCase(Locale.ROOT)
-//                    val itemModal = emptyList<DisplayableItem>().toMutableList()
-//
-//                    for (item in items) {
-//                        if ((item as PokemonItem).name.contains(searchChr)) {
-//                            itemModal.add(item)
-//                        }
-//
-//                        itemsFilterList = itemModal as ArrayList<DisplayableItem>
-//                    }
-//                }
-//                val filterResults = FilterResults()
-//                filterResults.values = itemsFilterList
-//                return filterResults
-//            }
-//
-//            @Suppress("UNCHECKED_CAST")
-//            override fun publishResults(constraint: CharSequence?, filterResults: FilterResults?) {
-//
-//                items = filterResults?.values as ArrayList<DisplayableItem>
-//
-//                notifyDataSetChanged()
-//            }
-//
-//
-//        }
-//    }
 
 }
