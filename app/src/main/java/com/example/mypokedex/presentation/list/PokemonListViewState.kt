@@ -1,4 +1,4 @@
-package com.example.mypokedex
+package com.example.mypokedex.presentation.list
 
 
 import com.example.mypokedex.presentation.adapter.PokemonItem

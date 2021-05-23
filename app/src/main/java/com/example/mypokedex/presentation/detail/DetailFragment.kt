@@ -1,8 +1,6 @@
-package com.example.mypokedex
+package com.example.mypokedex.presentation.detail
 
 
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 
 import android.util.Log
@@ -11,19 +9,16 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
-import com.example.mypokedex.domain.PokemonDetails
+import com.example.mypokedex.R
+import com.example.mypokedex.domain.PokemonEntity
 import com.example.mypokedex.presentation.Navigation2
 import com.example.mypokedex.presentation.adapter.MainAdapter
 import com.skydoves.progressview.ProgressView
 import com.squareup.picasso.Picasso
-import org.intellij.lang.annotations.Language
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -159,35 +154,35 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         abilitiesTextView.text = state.abilities.toString()
 
         val hpNew = state.stats["hp"]
-        hpP.labelText = "Health : $hpNew/${PokemonDetails.maxHp}"
-        hpP.max = PokemonDetails.maxHp.toFloat()
+        hpP.labelText = "Health : $hpNew/${PokemonEntity.maxHp}"
+        hpP.max = PokemonEntity.maxHp.toFloat()
         if (hpNew != null) {
             hpP.progress = hpNew.toFloat()
         }
 
 
-        val exp: Int = (PokemonDetails.minExp..PokemonDetails.maxExp).random()
-        fun getExpString(): String = "Experience : $exp/${PokemonDetails.maxExp}"
+        val exp: Int = (PokemonEntity.minExp..PokemonEntity.maxExp).random()
+        fun getExpString(): String = "Experience : $exp/${PokemonEntity.maxExp}"
         expP.labelText = getExpString()
-        expP.max = PokemonDetails.maxExp.toFloat()
+        expP.max = PokemonEntity.maxExp.toFloat()
         expP.progress = exp.toFloat()
 
         val attak = state.stats["attack"]
-        attakP.labelText = "Attack : $attak/${PokemonDetails.maxAttack}"
-        attakP.max = PokemonDetails.maxAttack.toFloat()
+        attakP.labelText = "Attack : $attak/${PokemonEntity.maxAttack}"
+        attakP.max = PokemonEntity.maxAttack.toFloat()
         if (attak != null) {
             attakP.progress = attak.toFloat()
         }
 
         val def = state.stats["defense"]
-        deffP.labelText = "Defense : $def/${PokemonDetails.maxDefense}"
-        deffP.max = PokemonDetails.maxDefense.toFloat()
+        deffP.labelText = "Defense : $def/${PokemonEntity.maxDefense}"
+        deffP.max = PokemonEntity.maxDefense.toFloat()
         if (def != null) {
             deffP.progress = def.toFloat()
         }
         val speed = state.stats["speed"]
-        speedP.labelText = "Speed : $speed/${PokemonDetails.maxSpeed}"
-        speedP.max = PokemonDetails.maxSpeed.toFloat()
+        speedP.labelText = "Speed : $speed/${PokemonEntity.maxSpeed}"
+        speedP.max = PokemonEntity.maxSpeed.toFloat()
         if (speed != null) {
             speedP.progress = speed.toFloat()
         }
@@ -202,13 +197,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
 
-    fun loadPokemonDataView(view: View, pokemon: PokemonDetails) {
+    fun loadPokemonDataView(view: View, pokemon: PokemonEntity) {
         val hpP = view.findViewById<ProgressView>(R.id.progress_hp)
 
 
         hpP.progress = pokemon.hp.toFloat()
         hpP.labelText = pokemon.getHpString()
-        hpP.max = PokemonDetails.maxHp.toFloat()
+        hpP.max =PokemonEntity.maxHp.toFloat()
 
 
     }

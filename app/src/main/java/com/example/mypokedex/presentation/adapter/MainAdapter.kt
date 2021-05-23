@@ -4,30 +4,19 @@ package com.example.mypokedex.presentation.adapter
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
 
-import android.widget.Filterable
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mypokedex.DetailViewState
-import com.example.mypokedex.ListViewModel
 import com.example.mypokedex.R
 import com.example.mypokedex.databinding.HeaderItemBinding
 import com.example.mypokedex.databinding.MainItemBinding
-import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import java.lang.Exception
-import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 
@@ -39,18 +28,6 @@ class MainAdapter(
     private val onItemClicked: (id: String) -> Unit
 ) : ListAdapter<DisplayableItem, RecyclerView.ViewHolder>(PokemonItemDiffCallback) {
 
-  //  private var items: MutableList<DisplayableItem> = emptyList<DisplayableItem>().toMutableList()
-
-
-
-//    fun setPokemonList(pokemons: List<DisplayableItem>) {
-//        items.clear()
-// items.addAll(pokemons )
-//
-//
-//        notifyDataSetChanged()
-//
-//    }
 
     private object PokemonItemDiffCallback : DiffUtil.ItemCallback<DisplayableItem>() {
         override fun areItemsTheSame(

@@ -1,11 +1,10 @@
 package com.example.mypokedex.di
 
-import com.example.mypokedex.DetailViewModel
-import com.example.mypokedex.ListViewModel
+import com.example.mypokedex.presentation.detail.DetailViewModel
+import com.example.mypokedex.presentation.list.ListViewModel
 import com.example.mypokedex.data.NetworkPokemonRepository
 import com.example.mypokedex.data.network.PokedexApiService
 import com.example.mypokedex.data.network.createPokedexApiService
-import com.example.mypokedex.domain.PokemonDetails
 import com.example.mypokedex.domain.PokemonRepository
 
 import org.koin.androidx.viewmodel.dsl.viewModel

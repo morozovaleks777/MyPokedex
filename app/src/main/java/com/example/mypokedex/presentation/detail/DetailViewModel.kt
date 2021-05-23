@@ -1,11 +1,11 @@
-package com.example.mypokedex
+package com.example.mypokedex.presentation.detail
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mypokedex.domain.PokemonDetails
+
 
 import com.example.mypokedex.domain.PokemonEntity
 import com.example.mypokedex.domain.PokemonRepository
@@ -18,8 +18,8 @@ import java.lang.StringBuilder
 class DetailViewModel(private val repository: PokemonRepository) : ViewModel() {
 
     private val viewStateLiveData = MutableLiveData<DetailViewState>()
-    private val _pokemonDetailsLiveData = MutableLiveData<PokemonDetails>()
-    val pokemonDetailsLiveData: LiveData<PokemonDetails> = _pokemonDetailsLiveData
+    private val _pokemonDetailsLiveData = MutableLiveData<PokemonEntity>()
+    val pokemonDetailsLiveData: LiveData<PokemonEntity> = _pokemonDetailsLiveData
 
     fun viewState(): LiveData<DetailViewState> = viewStateLiveData
 

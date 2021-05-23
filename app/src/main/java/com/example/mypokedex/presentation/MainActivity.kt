@@ -3,24 +3,13 @@ package com.example.mypokedex.presentation
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 
-import com.example.mypokedex.DetailFragment
-import com.example.mypokedex.ListFragment
+import com.example.mypokedex.presentation.detail.DetailFragment
+import com.example.mypokedex.presentation.list.ListFragment
 import com.example.mypokedex.R
 import com.example.mypokedex.presentation.adapter.MainAdapter
-import android.view.inputmethod.EditorInfo
-
-
-
-import android.view.MenuInflater
-
-
-
 
 
 class MainActivity : AppCompatActivity(), Navigation, Navigation2 {
@@ -35,8 +24,13 @@ class MainActivity : AppCompatActivity(), Navigation, Navigation2 {
             //  R.animator.slide_in_left, R.animator.slide_in_right)
             .replace(android.R.id.content, ListFragment())
             .commit()
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.overflow_menu, menu)
+        return true
     }
 
     override fun openPokemonDetails(id: String) {
@@ -76,61 +70,17 @@ class MainActivity : AppCompatActivity(), Navigation, Navigation2 {
     }
 
 
-//        override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//            menuInflater.inflate(R.menu.overflow_menu,menu)
-//
-//            val menuItem=menu!!.findItem(R.id.searchView)
-//            val searchView=menuItem.actionView as SearchView
-//            searchView.maxWidth= Int.MAX_VALUE
-//            searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
-//                override fun onQueryTextSubmit(query: String?): Boolean {
-//                    mainAdapter?.filter?.filter(query)
-//
-//                    return true
-//                   // return false
-//                }
-//
-//                override fun onQueryTextChange(filterString: String?): Boolean {
-//            mainAdapter?.filter?.filter(filterString)
-//                    return true
-//                    //return false
-//                }
-//
-//            })
-//            return super.onCreateOptionsMenu(menu)
-////return true
-//        }
-//
-//
-//
-//        override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//
-//            when (item.itemId) {
-//                R.id.searchView ->{
-//                    mainAdapter?.filter}
-//              //  R.id.show_by_generation -> PokemonApiFilter.SHOW_BY_GEN
-//
-//               // else -> PokemonApiFilter.SHOW_SINGLE
-//            }
-//
-//            return true
-//        }
-
 
     fun click(view: View) {
         onBackPressed()
-
-
     }
 
 
 }
 
-
 interface Navigation {
     fun openPokemonDetails(id: String)
 }
-
 interface Navigation2 {
     fun openPokemonList()
 

@@ -8,13 +8,16 @@
 
 
     <item
-        android:id="@+id/searchView"
+        android:id="@+id/search"
         android:title="@string/search"
-        app:showAsAction="always"
-        android:actionLayout="@layout/fragment_list"
- app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom"
+       app:actionViewClass="androidx.appcompat.widget.SearchView"
         />
-
+<item
+ android:id="@+id/show"
+android:title="show"
+    android:actionLayout="@layout/fragment_list"
+    />
 
 
 </menu>

@@ -1,4 +1,4 @@
-package com.example.mypokedex
+package com.example.mypokedex.presentation.detail
 
 sealed class DetailViewState {
     object Loading : DetailViewState()
