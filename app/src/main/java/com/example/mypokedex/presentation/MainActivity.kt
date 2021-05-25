@@ -15,7 +15,6 @@ import com.example.mypokedex.presentation.adapter.MainAdapter
 class MainActivity : AppCompatActivity(), Navigation, Navigation2 {
     var mainAdapter: MainAdapter? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportFragmentManager.beginTransaction()
@@ -24,14 +23,8 @@ class MainActivity : AppCompatActivity(), Navigation, Navigation2 {
             //  R.animator.slide_in_left, R.animator.slide_in_right)
             .replace(android.R.id.content, ListFragment())
             .commit()
-
-
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.overflow_menu, menu)
-        return true
-    }
+
 
     override fun openPokemonDetails(id: String) {
         supportFragmentManager.beginTransaction()

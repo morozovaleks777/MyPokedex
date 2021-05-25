@@ -30,21 +30,33 @@ class ListViewModel(private val repository: PokemonRepository) : ViewModel() //,
     fun loadData() {
         viewStateLiveData.value = PokemonListViewState.Loading
 
-        viewModelScope.launch {
-            viewStateLiveData.value = when (val result = repository.getPokemonList()) {
-                is Result.Success -> {
-                    val pokemonItems = result.data.map { it.toItem() }
-                    PokemonListViewState.Data(pokemonItems)
-                }
-                is Result.Error -> {
-                    Log.d("ViewModel", "Error is", result.exception)
-                    PokemonListViewState.Error("Error Message")
-                }
-
-
-            }
-        }
+        loadDataWithFilter()
     }
+
+     fun filterBy(filter: String?) {
+         loadDataWithFilter(filter)
+     }
+
+     private fun loadDataWithFilter(filter: String? = null) {
+         viewModelScope.launch {
+             viewStateLiveData.value = when (val result = repository.getPokemonList()) {
+                 is Result.Success -> {
+                     val pokemonItems = result.data.map { it.toItem() }
+
+                     if (filter != null) {
+                         val withFilter = pokemonItems.filter { it.name.contains(filter) }
+                         PokemonListViewState.Data(withFilter)
+                     } else {
+                         PokemonListViewState.Data(pokemonItems)
+                     }
+                 }
+                 is Result.Error -> {
+                     Log.d("ViewModel", "Error is", result.exception)
+                     PokemonListViewState.Error("Error Message")
+                 }
+             }
+         }
+     }
 
 
 //    override fun getFilter(): Filter {
