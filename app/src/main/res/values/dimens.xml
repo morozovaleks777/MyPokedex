@@ -22,4 +22,5 @@
     <dimen name="card_poke_size">180dp</dimen>
     <dimen name="image_large">180dp</dimen>
     <dimen name="progress_bar_height">20dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.mypokedex.presentation.detail
 
+import android.media.AudioAttributes
+import android.media.MediaPlayer
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -18,6 +18,7 @@ import com.example.mypokedex.presentation.adapter.DisplayableItem
 import com.example.mypokedex.presentation.adapter.MainAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.widget.doOnTextChanged
 
 
@@ -44,7 +45,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         viewModel.loadData()
 
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
-        toolbar.title = "App title"
+        toolbar.title = "My Pokedex"
         (activity as AppCompatActivity?)?.setSupportActionBar(toolbar)
 
         val searchEditText: EditText = view.findViewById(R.id.searchEditText)
@@ -52,6 +53,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         searchEditText.doOnTextChanged { text, start, before, count ->
             viewModel.filterBy(text.toString())
         }
+
     }
 
     private fun initViewModel() {

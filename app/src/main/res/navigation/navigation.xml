@@ -24,8 +24,17 @@
         android:id="@+id/detailFragment"
         android:name="com.example.mypokedex.presentation.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_pokedexEro"
+            app:destination="@id/pokedexEro" />
+    </fragment>
     <argument
         android:name="pokemonId"
         app:argType="string"/>
+    <fragment
+        android:id="@+id/pokedexEro"
+        android:name="com.example.mypokedex.PokedexEro"
+        android:label="fragment_pokedex_ero"
+        tools:layout="@layout/fragment_pokedex_ero" />
 </navigation>

@@ -1,14 +1,17 @@
 package com.example.mypokedex.presentation.detail
 
 
+import android.R.attr
+import android.net.Uri
+import android.net.Uri.parse
 import android.os.Bundle
+import android.os.Environment
+import android.service.controls.actions.FloatAction
 
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.core.os.bundleOf
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
@@ -19,6 +22,11 @@ import com.example.mypokedex.presentation.adapter.MainAdapter
 import com.skydoves.progressview.ProgressView
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import android.R.attr.button
+import android.R.attr.onClick
+import com.example.mypokedex.PokedexEro
+import com.example.mypokedex.presentation.Navigation3
+import com.example.mypokedex.presentation.NumberAdapter
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,6 +43,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val viewModel: DetailViewModel by viewModel()
     private var adapter: MainAdapter? = null
     private val navigation: Navigation2? by lazy { (activity as? Navigation2) }
+    private val navigation2: Navigation3? by lazy { (activity as? Navigation3) }
 
 
     companion object {
@@ -47,12 +56,19 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
         backToList()
-
+goToPokedexEro()
         val id = arguments?.getString(PARAM_POKEMON_ID)
 
         if (id != null) {
@@ -65,6 +81,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
 
     }
+
+
 
 
     private fun loadPokemonData(view: View, id: String) {
@@ -102,6 +120,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private fun backToList() {
         adapter = MainAdapter {
             navigation?.openPokemonList()
+
+        }
+
+    }
+    private fun goToPokedexEro() {
+        adapter = MainAdapter {
+            navigation2?.openPokedexEro()
 
         }
 
@@ -162,6 +187,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
 
         val exp: Int = (PokemonEntity.minExp..PokemonEntity.maxExp).random()
+if(exp > 100) view.findViewById<Button>(R.id.floatingActionButton).isVisible=true
         fun getExpString(): String = "Experience : $exp/${PokemonEntity.maxExp}"
         expP.labelText = getExpString()
         expP.max = PokemonEntity.maxExp.toFloat()
@@ -197,16 +223,16 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
 
-    fun loadPokemonDataView(view: View, pokemon: PokemonEntity) {
-        val hpP = view.findViewById<ProgressView>(R.id.progress_hp)
-
-
-        hpP.progress = pokemon.hp.toFloat()
-        hpP.labelText = pokemon.getHpString()
-        hpP.max =PokemonEntity.maxHp.toFloat()
-
-
-    }
+//    fun loadPokemonDataView(view: View, pokemon: PokemonEntity) {
+//        val hpP = view.findViewById<ProgressView>(R.id.progress_hp)
+//
+//
+//        hpP.progress = pokemon.hp.toFloat()
+//        hpP.labelText = pokemon.getHpString()
+//        hpP.max =PokemonEntity.maxHp.toFloat()
+//
+//
+//    }
 
 
 }
