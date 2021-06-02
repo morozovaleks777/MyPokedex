@@ -1,21 +1,16 @@
 package com.example.mypokedex.presentation.detail
 
-import android.media.AudioAttributes
-import android.media.MediaPlayer
+
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-
-
 import com.example.mypokedex.domain.PokemonEntity
 import com.example.mypokedex.domain.PokemonRepository
+import com.example.mypokedex.domain.Result
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import com.example.mypokedex.domain.Result
-import java.lang.IllegalArgumentException
-import java.lang.StringBuilder
 
 class DetailViewModel(private val repository: PokemonRepository) : ViewModel() {
 

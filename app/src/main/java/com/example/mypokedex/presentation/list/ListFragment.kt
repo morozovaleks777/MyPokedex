@@ -1,12 +1,16 @@
 package com.example.mypokedex.presentation.list
 
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,9 +21,6 @@ import com.example.mypokedex.presentation.Navigation
 import com.example.mypokedex.presentation.adapter.DisplayableItem
 import com.example.mypokedex.presentation.adapter.MainAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
-import androidx.core.widget.doOnTextChanged
 
 
 class ListFragment : Fragment(R.layout.fragment_list) {

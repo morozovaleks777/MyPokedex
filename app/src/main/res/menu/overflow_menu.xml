@@ -5,8 +5,7 @@
     <item
         android:id="@+id/show"
         android:title="show"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
-
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
 
 </menu>

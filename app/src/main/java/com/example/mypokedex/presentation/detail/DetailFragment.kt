@@ -1,32 +1,25 @@
 package com.example.mypokedex.presentation.detail
 
 
-import android.R.attr
-import android.net.Uri
-import android.net.Uri.parse
 import android.os.Bundle
-import android.os.Environment
-import android.service.controls.actions.FloatAction
-
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import com.example.mypokedex.R
 import com.example.mypokedex.domain.PokemonEntity
 import com.example.mypokedex.presentation.Navigation2
+import com.example.mypokedex.presentation.Navigation3
 import com.example.mypokedex.presentation.adapter.MainAdapter
 import com.skydoves.progressview.ProgressView
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import android.R.attr.button
-import android.R.attr.onClick
-import com.example.mypokedex.PokedexEro
-import com.example.mypokedex.presentation.Navigation3
-import com.example.mypokedex.presentation.NumberAdapter
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -63,12 +56,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
         backToList()
-goToPokedexEro()
+        goToPokedexEro()
         val id = arguments?.getString(PARAM_POKEMON_ID)
 
         if (id != null) {
@@ -81,8 +73,6 @@ goToPokedexEro()
 
 
     }
-
-
 
 
     private fun loadPokemonData(view: View, id: String) {
@@ -124,6 +114,7 @@ goToPokedexEro()
         }
 
     }
+
     private fun goToPokedexEro() {
         adapter = MainAdapter {
             navigation2?.openPokedexEro()
@@ -187,7 +178,10 @@ goToPokedexEro()
 
 
         val exp: Int = (PokemonEntity.minExp..PokemonEntity.maxExp).random()
-if(exp > 100) view.findViewById<Button>(R.id.floatingActionButton).isVisible=true
+        if (exp > 100){ view.findViewById<Button>(R.id.floatingActionButton).isVisible = true
+       // if (exp in 500..555){ view.findViewById<Button>(R.id.floatingActionButton).isVisible = true
+        view.findViewById<TextView>(R.id.surprise).isVisible=true
+        }
         fun getExpString(): String = "Experience : $exp/${PokemonEntity.maxExp}"
         expP.labelText = getExpString()
         expP.max = PokemonEntity.maxExp.toFloat()

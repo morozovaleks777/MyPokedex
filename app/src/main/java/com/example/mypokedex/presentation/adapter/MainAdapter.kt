@@ -3,13 +3,10 @@ package com.example.mypokedex.presentation.adapter
 
 import android.content.Context
 import android.graphics.Color
-import android.media.AudioAttributes
-import android.media.MediaPlayer
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
@@ -44,7 +41,6 @@ class MainAdapter(
     }
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             ITEM_TYPE_POKEMON -> {
@@ -74,7 +70,7 @@ class MainAdapter(
         //holder.itemView.setBackgroundColor(setRandomCardColor(holder.itemView.context))
 
 
-        when (val itemToShow = getItem(position) ){
+        when (val itemToShow = getItem(position)) {
             is PokemonItem -> {
                 (holder as PokemonViewHolder).bind(itemToShow)
             }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#C61212"
     tools:context=".PokedexEro">
 
 
@@ -11,25 +12,29 @@
         android:id="@+id/cardView2"
         android:layout_width="405dp"
         android:layout_height="469dp"
+        android:background="@drawable/gradient"
+        android:backgroundTintMode="multiply"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/unv">
+
+        >
 
         <ImageView
             android:id="@+id/eroImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"
-            android:focusable="true"
 
-           />
+            />
 
 
     </androidx.cardview.widget.CardView>
@@ -39,6 +44,7 @@
         android:id="@+id/text"
         android:layout_width="114dp"
         android:layout_height="207dp"
+        android:backgroundTint="@color/fire"
         android:text="1"
         android:textSize="93sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,19 +81,20 @@
 
     <TextView
         android:id="@+id/warning"
-        android:layout_width="149dp"
-        android:layout_height="55dp"
+        android:layout_width="145dp"
+        android:layout_height="70dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="72dp"
         android:layout_marginBottom="132dp"
-        android:background="@android:drawable/editbox_background"
+
         android:fontFamily="@font/roboto_mono_bold"
         android:text="@string/warning"
         android:textColor="@color/fire"
-        android:textSize="8sp"
+        android:textSize="10sp"
+        app:layout_constraintBaseline_creator="@integer/card_flip_duration_full"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintHorizontal_bias="0.348"
         app:layout_constraintStart_toEndOf="@+id/text" />
 
     <Button
@@ -102,24 +109,24 @@
         app:layout_constraintTop_toBottomOf="@+id/warning" />
 
     <TextView
-        android:id="@+id/dislikeCount"
+        android:id="@+id/dislikeCountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:layout_marginTop="65dp"
+        android:onClick="dislikeClick"
         android:text="0"
-android:onClick="dislikeClick"
         app:layout_constraintEnd_toEndOf="@+id/imageButton4"
         app:layout_constraintStart_toStartOf="@+id/imageButton4"
         app:layout_constraintTop_toTopOf="@+id/imageButton4" />
 
     <TextView
-        android:id="@+id/likecount"
+        android:id="@+id/likecountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:text="0"
-android:onClick="likeClick"
+        android:onClick="likeClick"
+        android:text="@string/_0"
         app:layout_constraintStart_toStartOf="@+id/imageButton3"
         app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
 

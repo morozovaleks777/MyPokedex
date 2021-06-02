@@ -2,11 +2,9 @@ package com.example.mypokedex.data
 
 import com.example.mypokedex.data.network.PokedexApiService
 import com.example.mypokedex.data.network.PokemonDetailedResponse
-
 import com.example.mypokedex.domain.PokemonEntity
 import com.example.mypokedex.domain.PokemonRepository
 import com.example.mypokedex.domain.Result
-import io.reactivex.Single
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

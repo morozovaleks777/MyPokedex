@@ -1,31 +1,20 @@
 package com.example.mypokedex.presentation.list
 
-import android.annotation.SuppressLint
 import android.util.Log
-import android.widget.Filter
-import android.widget.Filterable
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mypokedex.domain.PokemonRepository
-import kotlinx.coroutines.launch
 import com.example.mypokedex.domain.Result
-import com.example.mypokedex.presentation.adapter.DisplayableItem
-import com.example.mypokedex.presentation.adapter.MainAdapter
 import com.example.mypokedex.presentation.adapter.PokemonItem
 import com.example.mypokedex.presentation.adapter.toItem
-import kotlinx.coroutines.delay
-import kotlin.concurrent.timerTask
+import kotlinx.coroutines.launch
 
-class ListViewModel(private val repository: PokemonRepository) : ViewModel()
-{
+class ListViewModel(private val repository: PokemonRepository) : ViewModel() {
     //var adapter: MainAdapter? = null
     private val viewStateLiveData = MutableLiveData<PokemonListViewState>()
     fun viewState(): LiveData<PokemonListViewState> = viewStateLiveData
-
-
 
 
     fun loadData() {
