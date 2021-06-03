@@ -26,11 +26,8 @@ class NetworkPokemonRepository(
 
     override suspend fun getPokemonById(id: String): Result<PokemonEntity> =
         withContext(Dispatchers.IO) {
-
             try {
-
                 val entity = api.fetchPokemonDetail(id).toEntity()
-
                 Result.Success(entity)
             } catch (exception: Exception) {
                 Result.Error(exception)
@@ -38,9 +35,7 @@ class NetworkPokemonRepository(
         }
 
     private fun PokemonDetailedResponse.toEntity() =
-
         PokemonEntity(
-
             id = id,
             name = name,
             previewUrl = generateUrlFromId(id),
@@ -50,7 +45,6 @@ class NetworkPokemonRepository(
             stats = stats.map { it.stat.name to it.base_stat }.toMap(),
             types = types.map { it.type.name }
         )
-
 
     fun generateUrlFromId(id: String): String =
         "https://pokeres.bastionbot.org/images/pokemon/$id.png"

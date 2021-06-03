@@ -27,7 +27,6 @@ class MainAdapter(
     private val onItemClicked: (id: String) -> Unit
 ) : ListAdapter<DisplayableItem, RecyclerView.ViewHolder>(PokemonItemDiffCallback) {
 
-
     private object PokemonItemDiffCallback : DiffUtil.ItemCallback<DisplayableItem>() {
         override fun areItemsTheSame(
             oldItem: DisplayableItem,
@@ -40,17 +39,13 @@ class MainAdapter(
         ): Boolean = false
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             ITEM_TYPE_POKEMON -> {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.main_item, parent, false)
                 PokemonViewHolder(view, onItemClicked)
-
-
             }
-
             ITEM_TYPE_HEADER -> {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.header_item, parent, false)
@@ -66,10 +61,6 @@ class MainAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.itemView.findViewById<CardView>(R.id.cardView)
             .setCardBackgroundColor(setRandomCardColor(holder.itemView.context))
-
-        //holder.itemView.setBackgroundColor(setRandomCardColor(holder.itemView.context))
-
-
         when (val itemToShow = getItem(position)) {
             is PokemonItem -> {
                 (holder as PokemonViewHolder).bind(itemToShow)
@@ -85,7 +76,6 @@ class MainAdapter(
         return coloredList[Random.nextInt(1, coloredList.size)]
     }
 
-
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
             is PokemonItem -> ITEM_TYPE_POKEMON
@@ -94,23 +84,18 @@ class MainAdapter(
         }
     }
 
-    //override fun getItemCount(): Int = items.size
-
     class PokemonViewHolder(view: View, val onItemClicked: (id: String) -> Unit) :
         RecyclerView.ViewHolder(view) {
         val binding = MainItemBinding.bind(itemView)
 
         fun bind(item: PokemonItem) = with(binding) {
             name.text = item.name
-
             if (item.useRedColor) {
                 name.setTextColor(Color.RED)
             } else {
                 name.setTextColor(Color.BLACK)
             }
-
             Picasso.get().load(item.image).into(imagePreview)
-
             itemView.setOnClickListener {
                 onItemClicked(item.id)
             }
@@ -124,6 +109,4 @@ class MainAdapter(
             headerText.text = item.text
         }
     }
-
-
 }

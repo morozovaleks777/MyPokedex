@@ -14,7 +14,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 val appModule = module {
     single<PokedexApiService> { createPokedexApiService() }
     single<PokemonRepository> { NetworkPokemonRepository(get()) }
-
     viewModel { ListViewModel(get()) }
     viewModel { DetailViewModel(get()) }
 }
@@ -24,6 +23,5 @@ private fun createPokedexApiService(): PokedexApiService {
         .baseUrl("https://pokeapi.co/api/v2/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-
     return retrofit.create(PokedexApiService::class.java)
 }

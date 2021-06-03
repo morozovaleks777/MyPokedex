@@ -12,7 +12,6 @@ val PokemonPartialInfo.id: String
 val PokemonPartialInfo.imageUrl: String
     get() = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
 
-
 data class PokemonInfoResponse(
     val id: String,
     val name: String,

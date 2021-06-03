@@ -22,11 +22,9 @@ import com.example.mypokedex.presentation.adapter.DisplayableItem
 import com.example.mypokedex.presentation.adapter.MainAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class ListFragment : Fragment(R.layout.fragment_list) {
     private val viewModel: ListViewModel by viewModel()
     private val viewBinding: FragmentListBinding by viewBinding()
-
     private var adapter: MainAdapter? = null
     private val navigation: Navigation? by lazy { (activity as? Navigation) }
 
@@ -39,22 +37,17 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         postponeEnterTransition(1000, java.util.concurrent.TimeUnit.MILLISECONDS)
         super.onViewCreated(view, savedInstanceState)
-
         initViewModel()
         initRecyclerView()
         (view.parent as? View)?.doOnPreDraw { startPostponedEnterTransition() }
         viewModel.loadData()
-
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         toolbar.title = "My Pokedex"
         (activity as AppCompatActivity?)?.setSupportActionBar(toolbar)
-
         val searchEditText: EditText = view.findViewById(R.id.searchEditText)
-
         searchEditText.doOnTextChanged { text, start, before, count ->
             viewModel.filterBy(text.toString())
         }
-
     }
 
     private fun initViewModel() {
@@ -81,11 +74,9 @@ class ListFragment : Fragment(R.layout.fragment_list) {
                 navigation?.openPokemonDetails(id)
             }
         )
-
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerView)!!
         recyclerView.layoutManager = GridLayoutManager(context, 3)
         recyclerView.adapter = adapter
-
     }
 
     private fun showProgress() = with(viewBinding) {
@@ -117,13 +108,11 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.overflow_menu, menu)
-
-        menu?.findItem(R.id.show)?.setOnMenuItemClickListener {
+        menu.findItem(R.id.show)?.setOnMenuItemClickListener {
             Toast.makeText(context, "clicked on Show", Toast.LENGTH_LONG).show()
             true
         }
     }
-
 }
 
 

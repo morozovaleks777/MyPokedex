@@ -11,7 +11,7 @@ import com.example.mypokedex.R
 
 
 class NumberAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
-    val listOfPokemons = arrayListOf<Int>(
+    val listOfPokemons = arrayListOf(
         R.drawable.lugia_pokedex_1,
         R.drawable.ero_pokemon_2,
         R.drawable.persian_3,
@@ -33,9 +33,7 @@ class NumberAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment)
     override fun createFragment(position: Int): Fragment {
         val fragment = PokedexEro()
         fragment.arguments = Bundle().apply {
-
-          putInt(ARG_OBJECT, position + 1)
-
+            putInt(ARG_OBJECT, position + 1)
         }
         return fragment
     }

@@ -12,14 +12,12 @@ import com.example.mypokedex.presentation.adapter.toItem
 import kotlinx.coroutines.launch
 
 class ListViewModel(private val repository: PokemonRepository) : ViewModel() {
-    //var adapter: MainAdapter? = null
     private val viewStateLiveData = MutableLiveData<PokemonListViewState>()
-    fun viewState(): LiveData<PokemonListViewState> = viewStateLiveData
 
+    fun viewState(): LiveData<PokemonListViewState> = viewStateLiveData
 
     fun loadData() {
         viewStateLiveData.value = PokemonListViewState.Loading
-
         loadDataWithFilter()
     }
 
@@ -38,12 +36,8 @@ class ListViewModel(private val repository: PokemonRepository) : ViewModel() {
                         when (withFilter.isNotEmpty()) {
                             true -> PokemonListViewState.Data(withFilter)
                             false -> {
-
                                 PokemonListViewState.Error("ups")
-
-
                             }
-
                         }
                     } else {
                         PokemonListViewState.Data(pokemonItems)
@@ -56,7 +50,6 @@ class ListViewModel(private val repository: PokemonRepository) : ViewModel() {
             }
         }
     }
-
 }
 
 

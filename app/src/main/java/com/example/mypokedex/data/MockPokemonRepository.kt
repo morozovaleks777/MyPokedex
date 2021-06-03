@@ -22,14 +22,12 @@ class MockPokemonRepository : PokemonRepository {
 
     override suspend fun getPokemonById(id: String): Result<PokemonEntity> {
         val pokemon = items.find { it.id == id }
-
         return if (pokemon != null) {
             Result.Success(pokemon)
         } else {
             Result.Error(Exception("Not found"))
         }
     }
-
 
     fun generateUrlFromId(id: Int): String =
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"

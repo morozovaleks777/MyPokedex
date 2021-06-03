@@ -14,20 +14,14 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 
-
 const val ARG_OBJECT = "object"
 
-
-
 class PokedexEro : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-
         return inflater.inflate(R.layout.fragment_pokedex_ero, container, false)
     }
 
@@ -48,10 +42,7 @@ class PokedexEro : Fragment() {
             R.drawable.pinktaco_13,
             R.drawable.yuuyatails_lugia_13
         )
-
         arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
-
-
             val textView: TextView = view.findViewById(R.id.text)
             textView.text = getInt(ARG_OBJECT).toString()
             val imageView: ImageView = view.findViewById(R.id.eroImage)
@@ -59,10 +50,7 @@ class PokedexEro : Fragment() {
             imageView.setImageResource(listOfPokemons[i])
             val cardview = view.findViewById<CardView>(R.id.cardView2)
             animateColorValue(cardview)
-
         }
-
-
     }
 
     private fun animateColorValue(view: View) {
@@ -72,8 +60,4 @@ class PokedexEro : Fragment() {
         colorAnimation.addUpdateListener { animator -> view.setBackgroundColor(animator.animatedValue as Int) }
         colorAnimation.start()
     }
-
-
-
-
 }

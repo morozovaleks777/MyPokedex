@@ -13,9 +13,6 @@ data class PokemonEntity(
     val types: List<String>,
     val hp: Int = (minHp..maxHp).random()
 ) {
-
-    fun getHpString(): String = "Health : $hp/$maxHp"
-
     companion object {
         const val minHp = 100
         const val maxHp = 300
