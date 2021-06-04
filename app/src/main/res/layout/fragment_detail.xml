@@ -354,11 +354,11 @@
                 android:layout_width="190dp"
                 android:layout_height="190dp"
                 android:layout_marginTop="60dp"
-
-
+                android:adjustViewBounds="true"
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop"
                 android:layout_marginEnd="110dp"
                 android:contentDescription="Pokemon"
-                android:scaleType="center"
                 android:translationZ="100dp"
                 app:layout_constraintEnd_toEndOf="@+id/header"
                 app:layout_constraintHorizontal_bias="0.857"

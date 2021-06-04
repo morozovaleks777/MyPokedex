@@ -19,6 +19,9 @@ import com.example.mypokedex.presentation.adapter.MainAdapter
 import com.skydoves.progressview.ProgressView
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import android.widget.RelativeLayout
+import by.kirich1409.viewbindingdelegate.viewBinding
+
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val viewModel: DetailViewModel by viewModel()
