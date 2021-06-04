@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mypokedex.EronActivity
-import com.example.mypokedex.PokedexEro
+import com.example.mypokedex.presentation.ero.EroActivity
+import com.example.mypokedex.presentation.ero.PokedexEro
 import com.example.mypokedex.R
 import com.example.mypokedex.presentation.detail.DetailFragment
 import com.example.mypokedex.presentation.list.ListFragment
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(), Navigation, Navigation2, Navigation3 {
 
     fun click1(view: View) {
 
-        val intent = Intent(this, EronActivity::class.java)
+        val intent = Intent(this, EroActivity::class.java)
         startActivity(intent)
     }
 }
@@ -75,12 +75,10 @@ class MainActivity : AppCompatActivity(), Navigation, Navigation2, Navigation3 {
 interface Navigation {
     fun openPokemonDetails(id: String)
 }
-
 interface Navigation2 {
     fun openPokemonList()
 
 }
-
 interface Navigation3 {
     fun openPokedexEro()
 }

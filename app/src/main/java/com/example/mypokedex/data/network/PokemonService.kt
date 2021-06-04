@@ -1,17 +1,14 @@
 package com.example.mypokedex.data.network
-
 import com.example.mypokedex.domain.PokemonEntity
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-
 enum class PokemonApiFilter(val value: String) {
     SHOW_SINGLE("single pokemon"),
     SHOW_BY_GEN("generation"), SHOW_ALL("all")
 }
-
 
 fun createPokedexApiService(): PokedexApiService {
     val retrofit = Retrofit.Builder()
@@ -65,7 +62,6 @@ data class PokemonDetailedResponse(
 
     )
 
-// Stats
 data class PokemonStatsData(
     val stat: PokemonStatsDetailData,
     val base_stat: String
@@ -75,7 +71,6 @@ data class PokemonStatsDetailData(
     val name: String
 )
 
-// Abilities
 data class PokemonAbilityData(
     val ability: PokemonAbilityDetailsData,
 )

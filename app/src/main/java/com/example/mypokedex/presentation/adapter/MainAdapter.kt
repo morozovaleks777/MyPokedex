@@ -1,6 +1,5 @@
 package com.example.mypokedex.presentation.adapter
 
-
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
@@ -17,7 +16,6 @@ import com.example.mypokedex.databinding.HeaderItemBinding
 import com.example.mypokedex.databinding.MainItemBinding
 import com.squareup.picasso.Picasso
 import kotlin.random.Random
-
 
 private const val ITEM_TYPE_UNKNOWN = 0
 private const val ITEM_TYPE_POKEMON = 1

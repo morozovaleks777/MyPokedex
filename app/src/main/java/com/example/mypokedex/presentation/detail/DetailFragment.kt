@@ -1,6 +1,5 @@
 package com.example.mypokedex.presentation.detail
 
-
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -26,7 +25,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private var adapter: MainAdapter? = null
     private val navigation: Navigation2? by lazy { (activity as? Navigation2) }
     private val navigation2: Navigation3? by lazy { (activity as? Navigation3) }
-
     companion object {
         private const val PARAM_POKEMON_ID = "Pockemon_Id"
         fun newInstance(id: String): Fragment = DetailFragment().apply {
@@ -35,7 +33,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             )
         }
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         postponeEnterTransition(500, java.util.concurrent.TimeUnit.MILLISECONDS)
@@ -49,8 +46,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         }
         (view.parent as? View)?.doOnPreDraw { startPostponedEnterTransition() }
     }
-
-
     private fun loadPokemonData(view: View, id: String) {
         viewModel.loadPokemonById(id)
         val progressView = view.findViewById<ProgressBar>(R.id.progress)
@@ -95,7 +90,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         val nameTextView = view.findViewById<TextView>(R.id.name)
         val imagePreview = view.findViewById<ImageView>(R.id.image)
         val abilitiesTextView = view.findViewById<TextView>(R.id.abilities)
-
         val height = view.findViewById<TextView>(R.id.height)
         val weight = view.findViewById<TextView>(R.id.weight)
         val hpP = view.findViewById<ProgressView>(R.id.progress_hp)
@@ -126,9 +120,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 else -> R.color.white
             }
         }
-
         head.setBackgroundColor(getTypeColor(state.types))
-        nameTextView.text = viewModel.lat2cyr(state.name.toUpperCase()) + state.types
+        nameTextView.text = viewModel.lat2cyr(state.name.toUpperCase()) +"\n" +state.types
         height.text = state.height.toString()
         weight.text = state.weight.toString()
         abilitiesTextView.text = state.abilities.toString()

@@ -1,6 +1,5 @@
 package com.example.mypokedex.presentation.detail
 
-
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,7 +21,6 @@ class DetailViewModel(private val repository: PokemonRepository) : ViewModel() {
 
         fun PokemonEntity.toDataViewState() = DetailViewState.Data(
             name = name,
-            // name = transliterate(name),
             imageUrl = previewUrl,
             abilities = abilities,
             height = height,
@@ -44,7 +42,6 @@ class DetailViewModel(private val repository: PokemonRepository) : ViewModel() {
             }
         }
     }
-
     private fun createErrorViewState(message: String) = DetailViewState.Error(message)
 
     fun lat2cyr(s: String): String {

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity
-            android:name=".EronActivity"
+            android:name=".presentation.ero.EroActivity"
             android:exported="true" />
 
         <activity android:name=".presentation.MainActivity">

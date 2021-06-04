@@ -1,16 +1,18 @@
-package com.example.mypokedex.presentation
+package com.example.mypokedex.presentation.adapter
 
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.mypokedex.ARG_OBJECT
-import com.example.mypokedex.PokedexEro
+
+
 import com.example.mypokedex.R
+import com.example.mypokedex.presentation.ero.ARG_OBJECT
+import com.example.mypokedex.presentation.ero.PokedexEro
 
 
-class NumberAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
+class EroAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
     val listOfPokemons = arrayListOf(
         R.drawable.lugia_pokedex_1,
         R.drawable.ero_pokemon_2,

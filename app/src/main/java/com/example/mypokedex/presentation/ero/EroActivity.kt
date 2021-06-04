@@ -1,4 +1,4 @@
-package com.example.mypokedex
+package com.example.mypokedex.presentation.ero
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -12,13 +12,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.example.mypokedex.presentation.NumberAdapter
+import com.example.mypokedex.R
+import com.example.mypokedex.presentation.adapter.EroAdapter
 
-class EronActivity : AppCompatActivity() {
+class EroActivity : AppCompatActivity() {
     private var playButton: Button? = null
     private var pauseButton: Button? = null
     private var stopButton: Button? = null
-    private lateinit var eroAdapter: NumberAdapter
+    private lateinit var eroAdapter: EroAdapter
     private lateinit var viewPager: ViewPager2
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var runnable: Runnable
@@ -34,7 +35,7 @@ class EronActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_eron)
-        eroAdapter = NumberAdapter(this)
+        eroAdapter = EroAdapter(this)
         viewPager = findViewById(R.id.pager)
         viewPager.adapter = eroAdapter
         playButton = findViewById(R.id.start)

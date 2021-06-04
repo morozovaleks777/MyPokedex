@@ -269,13 +269,12 @@
                 android:id="@+id/abilities"
                 android:layout_width="467dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="328dp"
+                android:layout_marginTop="348dp"
                 android:background="@color/background"
                 android:padding="24dp"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.463"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Pokemon Abilities" />
@@ -308,12 +307,11 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="29dp"
                 android:layout_marginBottom="152dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="#039BE5"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:translationZ="100dp"
                 app:layout_constraintBottom_toTopOf="@+id/stats_title"
@@ -393,7 +391,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="472dp"
                 android:clickable="true"
-
+                android:textAlignment="center"
+                android:background="@drawable/lucario"
                 android:focusable="true"
                 android:onClick="click1"
                 android:visibility="invisible"
@@ -401,7 +400,6 @@
                 app:layout_constraintHorizontal_bias="0.954"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <include

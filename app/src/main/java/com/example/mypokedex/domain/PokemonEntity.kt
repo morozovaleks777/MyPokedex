@@ -1,6 +1,5 @@
 package com.example.mypokedex.domain
 
-
 data class PokemonEntity(
     val id: String,
     val name: String,
